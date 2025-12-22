@@ -41,6 +41,23 @@ const mod = __turbopack_context__.x("@prisma/client", () => require("@prisma/cli
 
 module.exports = mod;
 }),
+"[project]/Documents/GitHub/Robowala-Final-Debug/lib/db.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "prisma",
+    ()=>prisma
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/@prisma/client [external] (@prisma/client, cjs)");
+;
+const globalForPrisma = globalThis;
+const prisma = globalForPrisma.prisma || new __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$29$__["PrismaClient"]({
+    log: [
+        "query"
+    ]
+});
+if ("TURBOPACK compile-time truthy", 1) globalForPrisma.prisma = prisma;
+}),
 "[externals]/crypto [external] (crypto, cjs)", ((__turbopack_context__, module, exports) => {
 
 const mod = __turbopack_context__.x("crypto", () => require("crypto"));
@@ -97,23 +114,6 @@ const authConfig = {
     },
     providers: []
 };
-}),
-"[project]/Documents/GitHub/Robowala-Final-Debug/lib/db.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "prisma",
-    ()=>prisma
-]);
-var __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/@prisma/client [external] (@prisma/client, cjs)");
-;
-const globalForPrisma = globalThis;
-const prisma = globalForPrisma.prisma || new __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$29$__["PrismaClient"]({
-    log: [
-        "query"
-    ]
-});
-if ("TURBOPACK compile-time truthy", 1) globalForPrisma.prisma = prisma;
 }),
 "[project]/Documents/GitHub/Robowala-Final-Debug/lib/auth.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -180,162 +180,61 @@ const { handlers, signIn, signOut, auth } = (0, __TURBOPACK__imported__module__$
     ]
 });
 }),
-"[project]/Documents/GitHub/Robowala-Final-Debug/lib/auth-helpers.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"[project]/Documents/GitHub/Robowala-Final-Debug/app/api/orders/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
-    "getAuthUser",
-    ()=>getAuthUser,
-    "getUserId",
-    ()=>getUserId,
-    "requireAdmin",
-    ()=>requireAdmin,
-    "requireAuth",
-    ()=>requireAuth
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/GitHub/Robowala-Final-Debug/lib/auth.ts [app-route] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/GitHub/Robowala-Final-Debug/node_modules/next/server.js [app-route] (ecmascript)");
-;
-;
-async function getAuthUser() {
-    const session = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["auth"])();
-    return session?.user || null;
-}
-async function requireAuth() {
-    const user = await getAuthUser();
-    if (!user) {
-        return {
-            error: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "AuthenticationError",
-                message: "Authentication required. Please log in."
-            }, {
-                status: 401
-            }),
-            user: null
-        };
-    }
-    return {
-        error: null,
-        user
-    };
-}
-async function requireAdmin() {
-    const { error, user } = await requireAuth();
-    if (error) {
-        return {
-            error,
-            user: null
-        };
-    }
-    if (user.role !== "ADMIN") {
-        return {
-            error: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "AuthorizationError",
-                message: "Admin access required."
-            }, {
-                status: 403
-            }),
-            user: null
-        };
-    }
-    return {
-        error: null,
-        user
-    };
-}
-async function getUserId() {
-    const user = await getAuthUser();
-    if (!user || !user.id) {
-        throw new Error("User not authenticated");
-    }
-    return user.id;
-}
-}),
-"[project]/Documents/GitHub/Robowala-Final-Debug/app/api/cart/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "DELETE",
-    ()=>DELETE,
     "GET",
     ()=>GET,
     "POST",
     ()=>POST
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/GitHub/Robowala-Final-Debug/node_modules/next/server.js [app-route] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/@prisma/client [external] (@prisma/client, cjs)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/GitHub/Robowala-Final-Debug/lib/auth-helpers.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/GitHub/Robowala-Final-Debug/lib/db.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/GitHub/Robowala-Final-Debug/lib/auth.ts [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__ = __turbopack_context__.i("[project]/Documents/GitHub/Robowala-Final-Debug/node_modules/zod/v3/external.js [app-route] (ecmascript) <export * as z>");
 ;
 ;
 ;
 ;
-const prisma = new __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$29$__["PrismaClient"]();
-async function GET(request) {
-    try {
-        // Require authentication
-        const { error } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["requireAuth"])();
-        if (error) return error;
-        const userId = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getUserId"])();
-        // Get cart items with product details
-        const cartItems = await prisma.cartItem.findMany({
-            where: {
-                userId
-            },
-            include: {
-                product: true
-            },
-            orderBy: {
-                createdAt: "desc"
-            }
-        });
-        // Parse specifications and calculate totals
-        const items = cartItems.map((item)=>({
-                id: item.id,
-                productId: item.productId,
-                quantity: item.quantity,
-                product: {
-                    ...item.product,
-                    specifications: JSON.parse(item.product.specifications)
-                }
-            }));
-        // Calculate cart totals
-        const subtotal = items.reduce((sum, item)=>sum + item.product.originalPrice * item.quantity, 0);
-        const discount = items.reduce((sum, item)=>sum + (item.product.originalPrice - item.product.price) * item.quantity, 0);
-        const total = items.reduce((sum, item)=>sum + item.product.price * item.quantity, 0);
-        return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            items,
-            subtotal,
-            discount,
-            total
-        }, {
-            status: 200
-        });
-    } catch (error) {
-        console.error("Cart fetch error:", error);
-        return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "ServerError",
-            message: "An unexpected error occurred while fetching the cart"
-        }, {
-            status: 500
-        });
-    } finally{
-        await prisma.$disconnect();
+async function requireAuth() {
+    const session = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["auth"])();
+    if (!session?.user) {
+        return {
+            error: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: "Unauthorized"
+            }, {
+                status: 401
+            })
+        };
     }
+    return {
+        session
+    };
+}
+async function getUserId() {
+    const session = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["auth"])();
+    return session?.user?.id;
 }
 async function POST(request) {
     try {
         // Require authentication
-        const { error } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["requireAuth"])();
+        const { error } = await requireAuth();
         if (error) return error;
-        const userId = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getUserId"])();
+        const userId = await getUserId();
         const body = await request.json();
         // Validation schema
-        const addToCartSchema = __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].object({
-            productId: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(1, "Product ID is required"),
-            quantity: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].number().int().positive("Quantity must be positive").default(1)
+        const createOrderSchema = __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].object({
+            shippingAddress: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].object({
+                name: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(1, "Name is required"),
+                address: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(1, "Address is required"),
+                city: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(1, "City is required"),
+                state: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(1, "State is required"),
+                pincode: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(1, "PIN code is required"),
+                phone: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(1, "Phone is required")
+            })
         });
-        const validationResult = addToCartSchema.safeParse(body);
+        const validationResult = createOrderSchema.safeParse(body);
         if (!validationResult.success) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: "ValidationError",
@@ -345,144 +244,171 @@ async function POST(request) {
                 status: 400
             });
         }
-        const { productId, quantity } = validationResult.data;
-        // Check if user exists in database
-        const user = await prisma.user.findUnique({
+        const { shippingAddress } = validationResult.data;
+        // Get user's cart items
+        const cartItems = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].cartItem.findMany({
             where: {
-                id: userId
+                userId
+            },
+            include: {
+                product: true
             }
         });
-        if (!user) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "AuthenticationError",
-                message: "User not found in database"
-            }, {
-                status: 401
-            });
-        }
-        // Check if product exists and is in stock
-        const product = await prisma.product.findUnique({
-            where: {
-                id: productId
-            }
-        });
-        if (!product) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "NotFoundError",
-                message: "Product not found"
-            }, {
-                status: 404
-            });
-        }
-        if (!product.inStock) {
+        if (cartItems.length === 0) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: "ValidationError",
-                message: "Product is out of stock"
+                message: "Cart is empty"
             }, {
                 status: 400
             });
         }
-        // Check if item already exists in cart
-        const existingItem = await prisma.cartItem.findUnique({
-            where: {
-                userId_productId: {
-                    userId,
-                    productId
+        // Validate all products are in stock
+        const outOfStockProducts = cartItems.filter((item)=>!item.product.inStock);
+        if (outOfStockProducts.length > 0) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: "ValidationError",
+                message: "Some products are out of stock",
+                details: {
+                    outOfStockProducts: outOfStockProducts.map((item)=>item.product.name)
                 }
-            }
-        });
-        let cartItem;
-        if (existingItem) {
-            // Update quantity
-            cartItem = await prisma.cartItem.update({
-                where: {
-                    id: existingItem.id
-                },
-                data: {
-                    quantity: existingItem.quantity + quantity
-                },
-                include: {
-                    product: true
-                }
-            });
-        } else {
-            // Create new cart item
-            cartItem = await prisma.cartItem.create({
-                data: {
-                    userId,
-                    productId,
-                    quantity
-                },
-                include: {
-                    product: true
-                }
+            }, {
+                status: 400
             });
         }
-        // Parse specifications
-        const itemWithParsedSpecs = {
-            ...cartItem,
-            product: {
-                ...cartItem.product,
-                specifications: JSON.parse(cartItem.product.specifications)
-            }
+        // Calculate totals
+        const subtotal = cartItems.reduce((sum, item)=>sum + item.product.originalPrice * item.quantity, 0);
+        const discount = cartItems.reduce((sum, item)=>sum + (item.product.originalPrice - item.product.price) * item.quantity, 0);
+        const total = cartItems.reduce((sum, item)=>sum + item.product.price * item.quantity, 0);
+        // Generate unique order number
+        const orderNumber = `ORD-${Date.now()}-${Math.random().toString(36).substring(2, 9).toUpperCase()}`;
+        // Create order with items in a transaction
+        const order = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(async (tx)=>{
+            // Create order
+            const newOrder = await tx.order.create({
+                data: {
+                    orderNumber,
+                    userId,
+                    subtotal,
+                    discount,
+                    total,
+                    status: "PENDING",
+                    shippingAddress: JSON.stringify(shippingAddress)
+                }
+            });
+            // Create order items
+            await tx.orderItem.createMany({
+                data: cartItems.map((item)=>({
+                        orderId: newOrder.id,
+                        productId: item.productId,
+                        quantity: item.quantity,
+                        price: item.product.price
+                    }))
+            });
+            // Clear user's cart
+            await tx.cartItem.deleteMany({
+                where: {
+                    userId
+                }
+            });
+            // Fetch complete order with items
+            return await tx.order.findUnique({
+                where: {
+                    id: newOrder.id
+                },
+                include: {
+                    items: {
+                        include: {
+                            product: true
+                        }
+                    }
+                }
+            });
+        });
+        if (!order) {
+            throw new Error("Failed to create order");
+        }
+        // Parse shipping address and product specifications
+        const orderWithParsedData = {
+            ...order,
+            shippingAddress: JSON.parse(order.shippingAddress),
+            items: order.items.map((item)=>({
+                    ...item,
+                    product: {
+                        ...item.product,
+                        specifications: JSON.parse(item.product.specifications)
+                    }
+                }))
         };
         return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            message: "Item added to cart successfully",
-            item: itemWithParsedSpecs
+            message: "Order created successfully",
+            order: orderWithParsedData
         }, {
             status: 201
         });
     } catch (error) {
-        console.error("Add to cart error:", error);
-        // Handle Prisma foreign key constraint errors
-        if (error instanceof Error && error.message.includes('Foreign key constraint')) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "ValidationError",
-                message: "Invalid user or product reference. Please ensure you are logged in and the product exists."
-            }, {
-                status: 400
-            });
-        }
+        console.error("Order creation error:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: "ServerError",
-            message: "An unexpected error occurred while adding to cart"
+            message: "An unexpected error occurred while creating the order"
         }, {
             status: 500
         });
     } finally{
-        await prisma.$disconnect();
+        await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$disconnect();
     }
 }
-async function DELETE(request) {
+async function GET(request) {
     try {
         // Require authentication
-        const { error } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["requireAuth"])();
+        const { error } = await requireAuth();
         if (error) return error;
-        const userId = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getUserId"])();
-        // Clear all cart items for user
-        await prisma.cartItem.deleteMany({
+        const userId = await getUserId();
+        // Get user's orders
+        const orders = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].order.findMany({
             where: {
                 userId
+            },
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                }
+            },
+            orderBy: {
+                createdAt: "desc"
             }
         });
+        // Parse shipping address and product specifications
+        const ordersWithParsedData = orders.map((order)=>({
+                ...order,
+                shippingAddress: JSON.parse(order.shippingAddress),
+                items: order.items.map((item)=>({
+                        ...item,
+                        product: {
+                            ...item.product,
+                            specifications: JSON.parse(item.product.specifications)
+                        }
+                    }))
+            }));
         return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            message: "Cart cleared successfully"
+            orders: ordersWithParsedData
         }, {
             status: 200
         });
     } catch (error) {
-        console.error("Clear cart error:", error);
+        console.error("Orders fetch error:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: "ServerError",
-            message: "An unexpected error occurred while clearing the cart"
+            message: "An unexpected error occurred while fetching orders"
         }, {
             status: 500
         });
     } finally{
-        await prisma.$disconnect();
+        await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$disconnect();
     }
 }
 }),
 ];
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__2c56ca90._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__1eec7d9d._.js.map

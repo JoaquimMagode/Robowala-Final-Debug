@@ -99,6 +99,21 @@ export async function POST(request: NextRequest) {
 
     const { productId, quantity } = validationResult.data
 
+    // Check if user exists in database
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    })
+
+    if (!user) {
+      return NextResponse.json(
+        {
+          error: "AuthenticationError",
+          message: "User not found in database",
+        },
+        { status: 401 }
+      )
+    }
+
     // Check if product exists and is in stock
     const product = await prisma.product.findUnique({
       where: { id: productId },
@@ -179,6 +194,18 @@ export async function POST(request: NextRequest) {
     )
   } catch (error) {
     console.error("Add to cart error:", error)
+    
+    // Handle Prisma foreign key constraint errors
+    if (error instanceof Error && error.message.includes('Foreign key constraint')) {
+      return NextResponse.json(
+        {
+          error: "ValidationError",
+          message: "Invalid user or product reference. Please ensure you are logged in and the product exists.",
+        },
+        { status: 400 }
+      )
+    }
+    
     return NextResponse.json(
       {
         error: "ServerError",
