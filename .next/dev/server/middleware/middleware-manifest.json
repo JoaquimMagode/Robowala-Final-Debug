@@ -3,13 +3,13 @@
   "middleware": {
     "/": {
       "files": [
-        "server/edge/chunks/_80c5b744._.js",
-        "server/edge/chunks/node_modules_@opentelemetry_api_build_esm_4557a825._.js",
-        "server/edge/chunks/node_modules_@auth_core_a56a313d._.js",
-        "server/edge/chunks/node_modules_jose_dist_webapi_f4e85af0._.js",
-        "server/edge/chunks/node_modules_7533397a._.js",
-        "server/edge/chunks/[root-of-the-server]__c435c26b._.js",
-        "server/edge/chunks/turbopack-edge-wrapper_9082db90.js"
+        "server/edge/chunks/Documents_GitHub_Robowala-Final-Debug_4ec1b85e._.js",
+        "server/edge/chunks/48ee0_@opentelemetry_api_build_esm_bb920c4b._.js",
+        "server/edge/chunks/48ee0_@auth_core_86033089._.js",
+        "server/edge/chunks/48ee0_jose_dist_webapi_c70a65b9._.js",
+        "server/edge/chunks/48ee0_275e1d4b._.js",
+        "server/edge/chunks/[root-of-the-server]__d0ffcc7e._.js",
+        "server/edge/chunks/turbopack-Documents_GitHub_Robowala-Final-Debug_edge-wrapper_d58e56de.js"
       ],
       "name": "middleware",
       "page": "/",
@@ -44,9 +44,9 @@
       "env": {
         "__NEXT_BUILD_ID": "development",
         "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "+d+sDA6Pzi15X+ho6KnthOQdmxsitFTS6kDh/DHHUx4=",
-        "__NEXT_PREVIEW_MODE_ID": "3ca4f160b4ae64ed19c60d83284d7aa7",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "5c01bf35681bd426899f2d80494aae95a8283f69fcf61981ef3bde34dbc380f7",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "27cfe42291426d650cf9c952e769b093606157fe69b1648ef00b2e4348f4a63a"
+        "__NEXT_PREVIEW_MODE_ID": "5030172f41b4f0748dc4174f66aac5e4",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "bb16649cb65d323237a011786ce19e58bb69f8eb88b894c5d3fb5ba357393ac8",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "3e9d673ad0071a13096f3172bb24657be03f4c6afbbdd17d7b5333119e9b44b4"
       }
     }
   },
