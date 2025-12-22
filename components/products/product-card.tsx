@@ -6,7 +6,8 @@ import { ShoppingCart, Heart, Star, GitCompare } from "lucide-react"
 import type { Product } from "@/lib/products"
 import { useCartStore } from "@/lib/cart-store"
 import { useComparisonStore } from "@/lib/comparison-store"
-import { toast } from "sonner"
+import { useToast } from "@/hooks/use-toast"
+import { useState } from "react"
 
 interface ProductCardProps {
   product: Product
@@ -15,23 +16,47 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem)
   const { addProduct, isInComparison } = useComparisonStore()
+  const { toast } = useToast()
+  const [isAddingToCart, setIsAddingToCart] = useState(false)
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
   const inComparison = isInComparison(product.id)
 
-  const handleAddToCart = () => {
-    addItem(product, 1)
+  const handleAddToCart = async () => {
+    if (!product.inStock) {
+      toast({
+        title: "Out of Stock",
+        description: "This product is currently out of stock.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setIsAddingToCart(true)
+    try {
+      await addItem(product, 1)
+      toast({
+        title: "Added to Cart",
+        description: `${product.name} has been added to your cart.`,
+      })
+    } catch (error) {
+      console.error("Failed to add to cart:", error)
+      toast({
+        title: "Error",
+        description: "Failed to add item to cart. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsAddingToCart(false)
+    }
   }
 
   const handleAddToComparison = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     addProduct(product)
-    toast.success("Added to comparison", {
-      description: `${product.name} has been added to comparison`,
-      action: {
-        label: "View",
-        onClick: () => window.location.href = "/compare"
-      }
+    toast({
+      title: "Added to Comparison",
+      description: `${product.name} has been added to comparison.`,
     })
   }
 
@@ -125,11 +150,11 @@ export function ProductCard({ product }: ProductCardProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={handleAddToCart}
-              disabled={!product.inStock}
+              disabled={!product.inStock || isAddingToCart}
               className="flex-1 flex h-8 items-center justify-center gap-1 rounded bg-primary text-primary-foreground text-xs font-medium transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <ShoppingCart className="h-3 w-3" />
-              Add
+              {isAddingToCart ? "Adding..." : "Add"}
             </button>
             <button
               onClick={handleAddToComparison}

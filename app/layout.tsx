@@ -7,6 +7,7 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { AIChatWidget } from "@/components/layout/ai-chat-widget"
 import { Providers } from "@/components/providers"
+import { Toaster } from "@/components/ui/toaster"
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -48,6 +49,7 @@ export default function RootLayout({
           <main className="min-h-screen">{children}</main>
           <Footer />
           <AIChatWidget />
+          <Toaster />
         </Providers>
         <Analytics />
       </body>

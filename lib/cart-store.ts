@@ -118,6 +118,7 @@ export const useCartStore = create<CartStore>()(
           await get().fetchCart()
         } catch (error) {
           console.error("Failed to add item to cart:", error)
+          // Re-throw the error so the UI can handle it
           throw error
         } finally {
           set({ isLoading: false })

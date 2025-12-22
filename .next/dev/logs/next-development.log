@@ -1,68 +1,28 @@
-[00:00:03.430] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:03.925] Server  LOG      ✓ Ready in 3.1s
-[00:00:12.340] Server  LOG      ○ Compiling / ...
-[00:00:25.895] Browser WARN    Image with src "/esp32-development-board-wifi-bluetooth-microcontro.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:00:25.895] Browser WARN    Image with src "http://localhost:3000/images/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:00:26.294] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:26.294] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:26.294] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416427435}
-[00:00:28.657] Server  LOG      ○ Compiling /api/products ...
-[00:00:34.081] Server  LOG      ○ Compiling /_not-found/page ...
-[00:01:10.894] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416472032}
-[00:01:21.286] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products/4wd-robot-car-kit color: rgb(120, 120, 120) color: inherit {"dp":"/products/[slug]","o":"http://localhost:3000/products/4wd-robot-car-kit","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416482439}
-[00:01:33.577] Server  ERROR   C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2c56ca90._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:33.635] Server  ERROR   C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:33.669] Server  ERROR   C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_next_6777781f._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:33.691] Server  ERROR   C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:33.701] Server  ERROR   C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:33.707] Server  ERROR   C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:33.710] Server  ERROR   C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:33.713] Server  ERROR   C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:33.717] Server  ERROR   C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:33.728] Server  ERROR   Add to cart error: PrismaClientKnownRequestError: 
-Invalid `prisma.cartItem.create()` invocation in
-C:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2c56ca90._.js:396:46
-
-  393     });
-  394 } else {
-  395     // Create new cart item
-→ 396     cartItem = await prisma.cartItem.create(
-Foreign key constraint violated: `foreign key`
-[00:01:33.920] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":500}
-[00:01:33.921] Browser ERROR   unhandledRejection: APIError: An unexpected error occurred while adding to cart
-[00:01:34.861] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/checkout color: rgb(120, 120, 120) color: inherit {"dp":"/checkout","o":"http://localhost:3000/checkout","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416496013}
-[00:03:05.164] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/orders color: rgb(120, 120, 120) color: inherit {"dp":"/orders","o":"http://localhost:3000/orders","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416586307}
-[00:03:06.929] Server  LOG     prisma:query "SELECT `main`.`Order`.`id`, `main`.`Order`.`orderNumber`, `main`.`Order`.`userId`, `main`.`Order`.`subtotal`, `main`.`Order`.`discount`, `main`.`Order`.`total`, `main`.`Order`.`status`, `main`.`Order`.`shippingAddress`, `main`.`Order`.`createdAt`, `main`.`Order`.`updatedAt` FROM `main`.`Order` WHERE `main`.`Order`.`userId` = ? ORDER BY `main`.`Order`.`createdAt` DESC LIMIT ? OFFSET ?"
-[00:03:07.274] Server  LOG     prisma:query "SELECT `main`.`Order`.`id`, `main`.`Order`.`orderNumber`, `main`.`Order`.`userId`, `main`.`Order`.`subtotal`, `main`.`Order`.`discount`, `main`.`Order`.`total`, `main`.`Order`.`status`, `main`.`Order`.`shippingAddress`, `main`.`Order`.`createdAt`, `main`.`Order`.`updatedAt` FROM `main`.`Order` WHERE `main`.`Order`.`userId` = ? ORDER BY `main`.`Order`.`createdAt` DESC LIMIT ? OFFSET ?"
-[00:03:22.504] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416603661}
-[00:03:27.043] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416608083}
-[00:03:33.831] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products/4wd-robot-car-kit color: rgb(120, 120, 120) color: inherit {"dp":"/products/[slug]","o":"http://localhost:3000/products/4wd-robot-car-kit","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416614990}
-[00:03:48.746] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/checkout color: rgb(120, 120, 120) color: inherit {"dp":"/checkout","o":"http://localhost:3000/checkout","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416629518}
-[00:03:49.086] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
-[00:03:49.086] Browser ERROR   unhandledRejection: APIError: User not found in database
-[00:03:54.687] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416635655}
-[00:03:59.232] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products/4wd-robot-car-kit color: rgb(120, 120, 120) color: inherit {"dp":"/products/[slug]","o":"http://localhost:3000/products/4wd-robot-car-kit","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416640363}
-[00:04:01.148] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
-[00:04:01.148] Browser ERROR   unhandledRejection: APIError: User not found in database
-[00:04:08.513] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
-[00:04:08.513] Browser ERROR   unhandledRejection: APIError: User not found in database
-[00:04:14.101] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/cart color: rgb(120, 120, 120) color: inherit {"dp":"/cart","o":"http://localhost:3000/cart","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416655257}
-[00:04:17.769] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416658889}
-[00:04:21.572] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products?category=drone-parts color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products?category=drone-parts","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416662500}
-[00:04:24.285] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products/30a-esc color: rgb(120, 120, 120) color: inherit {"dp":"/products/[slug]","o":"http://localhost:3000/products/30a-esc","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416665388}
-[00:04:28.611] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/checkout color: rgb(120, 120, 120) color: inherit {"dp":"/checkout","o":"http://localhost:3000/checkout","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416669634}
-[00:04:28.611] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
-[00:04:28.611] Browser ERROR   unhandledRejection: APIError: User not found in database
-[00:04:40.791] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416681805}
-[00:04:45.049] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products?category=drone-parts color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products?category=drone-parts","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416686111}
-[00:04:49.193] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
-[00:04:49.193] Browser ERROR   unhandledRejection: APIError: User not found in database
-[00:04:52.338] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
-[00:04:52.338] Browser ERROR   unhandledRejection: APIError: User not found in database
-[00:04:52.608] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
-[00:04:52.608] Browser ERROR   unhandledRejection: APIError: User not found in database
-[00:04:53.949] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products/f450-quadcopter-frame color: rgb(120, 120, 120) color: inherit {"dp":"/products/[slug]","o":"http://localhost:3000/products/f450-quadcopter-frame","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416695102}
-[00:04:57.295] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/checkout color: rgb(120, 120, 120) color: inherit {"dp":"/checkout","o":"http://localhost:3000/checkout","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766416698445}
-[00:04:57.485] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
-[00:04:57.485] Browser ERROR   unhandledRejection: APIError: User not found in database
+[00:00:03.288] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:03.653] Server  LOG      ✓ Ready in 2.6s
+[00:00:06.858] Server  LOG      ○ Compiling /products/[slug] ...
+[00:00:14.296] Browser WARN    Image with src "http://localhost:3000/images/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:14.600] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:14.600] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/products/30a-esc","route":"/products/[slug]"}
+[00:00:14.600] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products/30a-esc color: rgb(120, 120, 120) color: inherit {"dp":"/products/[slug]","o":"http://localhost:3000/products/30a-esc","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766417609719}
+[00:00:21.498] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
+[00:00:21.498] Browser ERROR   Failed to add to cart: {"name":"APIError","status":401}
+[00:00:24.120] Browser ERROR   Failed to add item to cart: {"name":"APIError","status":401}
+[00:00:24.120] Browser ERROR   Failed to add to cart: {"name":"APIError","status":401}
+[00:01:43.471] Browser WARN    Image with src "http://localhost:3000/images/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:01:45.340] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:01:45.340] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:01:45.341] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766417699382}
+[00:02:15.238] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/login color: rgb(120, 120, 120) color: inherit {"dp":"/login","o":"http://localhost:3000/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766417730366}
+[00:02:23.512] Server  LOG     prisma:query "SELECT `main`.`User`.`id`, `main`.`User`.`email`, `main`.`User`.`name`, `main`.`User`.`password`, `main`.`User`.`role`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:02:24.785] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766417739913}
+[00:02:31.397] Browser WARN    Image with src "http://localhost:3000/images/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:02:31.397] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:02:31.397] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:02:31.397] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766417746298}
+[00:02:35.238] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766417750222}
+[00:02:39.838] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/login color: rgb(120, 120, 120) color: inherit {"dp":"/login","o":"http://localhost:3000/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766417754964}
+[00:02:57.684] Server  LOG     prisma:query "SELECT 1"
+[00:02:57.686] Server  LOG     prisma:query "SELECT `main`.`User`.`id`, `main`.`User`.`email`, `main`.`User`.`name`, `main`.`User`.`password`, `main`.`User`.`role`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:02:58.600] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766417773702}
+[00:03:30.520] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/cart color: rgb(120, 120, 120) color: inherit {"dp":"/cart","o":"http://localhost:3000/cart","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766417805504}

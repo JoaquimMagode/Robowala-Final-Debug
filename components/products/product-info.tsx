@@ -6,6 +6,8 @@ import { ShoppingCart, Heart, Share2, Truck, Shield, RefreshCw, Star, Minus, Plu
 import { Button } from "@/components/ui/button"
 import type { Product } from "@/lib/products"
 import { useCartStore } from "@/lib/cart-store"
+import { useAuth } from "@/lib/auth-context"
+import { useToast } from "@/hooks/use-toast"
 
 interface ProductInfoProps {
   product: Product
@@ -15,21 +17,79 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const router = useRouter()
   const [quantity, setQuantity] = useState(1)
   const [isWishlisted, setIsWishlisted] = useState(false)
+  const [isAddingToCart, setIsAddingToCart] = useState(false)
   const addItem = useCartStore((state) => state.addItem)
+  const { isAuthenticated } = useAuth()
+  const { toast } = useToast()
 
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1)
   const decrementQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
 
-  const handleAddToCart = () => {
-    addItem(product, quantity)
-    setQuantity(1)
+  const handleAddToCart = async () => {
+    if (!product.inStock) {
+      toast({
+        title: "Out of Stock",
+        description: "This product is currently out of stock.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setIsAddingToCart(true)
+    try {
+      await addItem(product, quantity)
+      toast({
+        title: "Added to Cart",
+        description: `${product.name} has been added to your cart.`,
+      })
+      setQuantity(1)
+    } catch (error) {
+      console.error("Failed to add to cart:", error)
+      toast({
+        title: "Error",
+        description: "Failed to add item to cart. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsAddingToCart(false)
+    }
   }
 
-  const handleBuyNow = () => {
-    addItem(product, quantity)
-    router.push("/checkout")
+  const handleBuyNow = async () => {
+    if (!product.inStock) {
+      toast({
+        title: "Out of Stock",
+        description: "This product is currently out of stock.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    if (!isAuthenticated) {
+      toast({
+        title: "Login Required",
+        description: "Please login to proceed with checkout.",
+        variant: "destructive",
+      })
+      router.push("/login")
+      return
+    }
+
+    setIsAddingToCart(true)
+    try {
+      await addItem(product, quantity)
+      router.push("/checkout")
+    } catch (error) {
+      console.error("Failed to add to cart:", error)
+      toast({
+        title: "Error",
+        description: "Failed to add item to cart. Please try again.",
+        variant: "destructive",
+      })
+      setIsAddingToCart(false)
+    }
   }
 
   return (
@@ -129,19 +189,19 @@ export function ProductInfo({ product }: ProductInfoProps) {
         <Button
           size="lg"
           className="flex-1 bg-[#1e3a5f] hover:bg-[#2d5a8f]"
-          disabled={!product.inStock}
+          disabled={!product.inStock || isAddingToCart}
           onClick={handleAddToCart}
         >
           <ShoppingCart className="mr-2 h-5 w-5" />
-          Add to Cart
+          {isAddingToCart ? "Adding..." : "Add to Cart"}
         </Button>
         <Button
           size="lg"
           className="flex-1 bg-[#ff6a00] hover:bg-[#ff6a00]/90"
-          disabled={!product.inStock}
+          disabled={!product.inStock || isAddingToCart}
           onClick={handleBuyNow}
         >
-          Buy Now
+          {isAddingToCart ? "Adding..." : "Buy Now"}
         </Button>
         <Button
           variant="outline"

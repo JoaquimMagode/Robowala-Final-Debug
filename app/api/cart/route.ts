@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
 import { requireAuth, getUserId } from "@/lib/auth-helpers"
+import { auth } from "@/lib/auth"
 import { z } from "zod"
 
 const prisma = new PrismaClient()
@@ -99,19 +100,33 @@ export async function POST(request: NextRequest) {
 
     const { productId, quantity } = validationResult.data
 
-    // Check if user exists in database
-    const user = await prisma.user.findUnique({
+    // Check if user exists in database, create if not
+    let user = await prisma.user.findUnique({
       where: { id: userId },
     })
 
     if (!user) {
-      return NextResponse.json(
-        {
-          error: "AuthenticationError",
-          message: "User not found in database",
+      // Get user info from session to create database record
+      const session = await auth()
+      if (!session?.user) {
+        return NextResponse.json(
+          {
+            error: "AuthenticationError",
+            message: "Invalid session",
+          },
+          { status: 401 }
+        )
+      }
+
+      // Create user record in database
+      user = await prisma.user.create({
+        data: {
+          id: userId,
+          email: session.user.email!,
+          name: session.user.name || session.user.email!,
+          role: "USER",
         },
-        { status: 401 }
-      )
+      })
     }
 
     // Check if product exists and is in stock
