@@ -1,0 +1,108 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication and user management
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  name      String?
+  password  String
+  role      String     @default("USER") // USER or ADMIN
+  cart      CartItem[]
+  orders    Order[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([email])
+}
+
+// Product model for the e-commerce catalog
+model Product {
+  id               String      @id @default(cuid())
+  name             String
+  slug             String      @unique
+  price            Float
+  originalPrice    Float
+  rating           Float       @default(0)
+  reviews          Int          @default(0)
+  image            String
+  category         String
+  categorySlug     String
+  subcategory      String?
+  subcategorySlug  String?
+  brand            String?
+  badge            String?
+  inStock          Boolean     @default(true)
+  description      String
+  specifications   String      // JSON string
+  datasheet        String?     // URL to datasheet/manual
+  relatedProducts  String?     // JSON array of product IDs
+  cartItems        CartItem[]
+  orderItems       OrderItem[]
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@index([slug])
+  @@index([categorySlug])
+  @@index([subcategorySlug])
+  @@index([brand])
+  @@index([inStock])
+}
+
+// CartItem model for managing user shopping carts
+model CartItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, productId])
+  @@index([userId])
+}
+
+// Order model for tracking customer orders
+model Order {
+  id              String      @id @default(cuid())
+  orderNumber     String      @unique
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  items           OrderItem[]
+  subtotal        Float
+  discount        Float
+  total           Float
+  status          String      @default("PENDING") // PENDING, PROCESSING, SHIPPED, DELIVERED, CANCELLED
+  shippingAddress String // JSON string
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+}
+
+// OrderItem model for individual items within an order
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float // Snapshot of price at time of order
+  createdAt DateTime @default(now())
+
+  @@index([orderId])
+}

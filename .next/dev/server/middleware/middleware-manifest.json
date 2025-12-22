@@ -1,0 +1,55 @@
+{
+  "sorted_middleware": [],
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/_80c5b744._.js",
+        "server/edge/chunks/node_modules_@opentelemetry_api_build_esm_4557a825._.js",
+        "server/edge/chunks/node_modules_@auth_core_a56a313d._.js",
+        "server/edge/chunks/node_modules_jose_dist_webapi_f4e85af0._.js",
+        "server/edge/chunks/node_modules_7533397a._.js",
+        "server/edge/chunks/[root-of-the-server]__c435c26b._.js",
+        "server/edge/chunks/turbopack-edge-wrapper_9082db90.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/admin/:path*{(\\\\.json)}?",
+          "originalSource": "/admin/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/api/admin/:path*{(\\\\.json)}?",
+          "originalSource": "/api/admin/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/api/cart/:path*{(\\\\.json)}?",
+          "originalSource": "/api/cart/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/api/orders/:path*{(\\\\.json)}?",
+          "originalSource": "/api/orders/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/checkout{(\\\\.json)}?",
+          "originalSource": "/checkout"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/orders/:path*{(\\\\.json)}?",
+          "originalSource": "/orders/:path*"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "+d+sDA6Pzi15X+ho6KnthOQdmxsitFTS6kDh/DHHUx4=",
+        "__NEXT_PREVIEW_MODE_ID": "3ca4f160b4ae64ed19c60d83284d7aa7",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "5c01bf35681bd426899f2d80494aae95a8283f69fcf61981ef3bde34dbc380f7",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "27cfe42291426d650cf9c952e769b093606157fe69b1648ef00b2e4348f4a63a"
+      }
+    }
+  },
+  "instrumentation": null,
+  "functions": {}
+}

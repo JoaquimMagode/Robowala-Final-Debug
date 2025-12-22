@@ -1,0 +1,51 @@
+{
+  "sorted_middleware": [],
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/edge-wrapper_0b0266f1.js",
+        "server/edge/chunks/[root-of-the-server]__9203eb01._.js",
+        "server/edge/chunks/turbopack-edge-wrapper_1518e603.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/admin/:path*{(\\\\.json)}?",
+          "originalSource": "/admin/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/api/admin/:path*{(\\\\.json)}?",
+          "originalSource": "/api/admin/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/api/cart/:path*{(\\\\.json)}?",
+          "originalSource": "/api/cart/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/api/orders/:path*{(\\\\.json)}?",
+          "originalSource": "/api/orders/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/checkout{(\\\\.json)}?",
+          "originalSource": "/checkout"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/orders/:path*{(\\\\.json)}?",
+          "originalSource": "/orders/:path*"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "-gKZ3N7zrrfEvlPhiMutU",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "FEnGStGSuUG0KTDcDdJWqkg1AryO9Z8dNAYzi7unmu8=",
+        "__NEXT_PREVIEW_MODE_ID": "883f2ea3c0b772c26d61dde17092049b",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "408827581333070571f86df81ab4a6292a3d6d3ccd45cefb3f22bc7cbc23fb10",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "557145f4db2ed26a1c1c83aed43efd55963855050c064bcb765d012dc4153ad5"
+      }
+    }
+  },
+  "instrumentation": null,
+  "functions": {}
+}
