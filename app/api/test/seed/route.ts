@@ -4,9 +4,6 @@ import bcrypt from "bcryptjs"
 
 export async function GET() {
   try {
-    // Clear existing products first
-    await prisma.product.deleteMany({})
-    
     // Create admin user
     const hashedPassword = await bcrypt.hash("admin123", 12)
     await prisma.user.upsert({
@@ -435,7 +432,11 @@ export async function GET() {
     ]
 
     for (const product of products) {
-      await prisma.product.create({ data: product })
+      await prisma.product.upsert({
+        where: { slug: product.slug },
+        update: product,
+        create: product,
+      })
     }
 
     return NextResponse.json({ 
