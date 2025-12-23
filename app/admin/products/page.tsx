@@ -18,11 +18,14 @@ interface Product {
   slug: string
   price: number
   originalPrice: number
+  discountPercent?: number
+  discountAmount?: number
   stock: number
   category: string
   categorySlug: string
   inStock: boolean
   image: string
+  images?: string[]
 }
 
 export default function ProductsPage() {
@@ -162,7 +165,17 @@ export default function ProductsPage() {
                         <span className="text-sm text-muted-foreground">{product.slug}</span>
                       </td>
                       <td className="py-4 pr-4">
-                        <span className="text-sm font-medium">₹{product.price}</span>
+                        <div className="text-sm">
+                          <span className="font-medium">₹{product.price}</span>
+                          {product.originalPrice > product.price && (
+                            <>
+                              <span className="ml-2 text-xs text-muted-foreground line-through">₹{product.originalPrice}</span>
+                              {product.discountPercent && (
+                                <span className="ml-1 text-xs text-green-600">({product.discountPercent}% off)</span>
+                              )}
+                            </>
+                          )}
+                        </div>
                       </td>
                       <td className="py-4 pr-4">
                         <span className={`text-sm ${product.stock === 0 ? "text-red-500" : ""}`}>{product.stock || 0}</span>

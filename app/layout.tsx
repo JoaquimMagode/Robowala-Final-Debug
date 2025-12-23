@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/footer"
 import { AIChatWidget } from "@/components/layout/ai-chat-widget"
 import { Providers } from "@/components/providers"
 import { Toaster } from "@/components/ui/toaster"
+import { Toaster as SonnerToaster } from "sonner"
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
           <Footer />
           <AIChatWidget />
           <Toaster />
+          <SonnerToaster />
         </Providers>
         <Analytics />
       </body>

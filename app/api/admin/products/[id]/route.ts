@@ -5,6 +5,53 @@ import { z } from "zod"
 
 const prisma = new PrismaClient()
 
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const { error } = await requireAdmin()
+    if (error) return error
+
+    const { id } = params
+
+    const product = await prisma.product.findUnique({
+      where: { id },
+    })
+
+    if (!product) {
+      return NextResponse.json(
+        {
+          error: "NotFoundError",
+          message: "Product not found",
+        },
+        { status: 404 }
+      )
+    }
+
+    const productWithParsedData = {
+      ...product,
+      specifications: JSON.parse(product.specifications),
+      images: product.images ? JSON.parse(product.images) : [],
+    }
+
+    return NextResponse.json({
+      product: productWithParsedData,
+    })
+  } catch (error) {
+    console.error("Product fetch error:", error)
+    return NextResponse.json(
+      {
+        error: "ServerError",
+        message: "An unexpected error occurred while fetching the product",
+      },
+      { status: 500 }
+    )
+  } finally {
+    await prisma.$disconnect()
+  }
+}
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -22,15 +69,23 @@ export async function PUT(
       name: z.string().min(1).optional(),
       price: z.number().positive().optional(),
       originalPrice: z.number().positive().optional(),
+      discountPercent: z.number().min(0).max(100).optional(),
+      discountAmount: z.number().min(0).optional(),
       rating: z.number().min(0).max(5).optional(),
       reviews: z.number().min(0).optional(),
       image: z.string().url().optional(),
+      images: z.array(z.string().url()).optional(),
       category: z.string().min(1).optional(),
       categorySlug: z.string().min(1).optional(),
+      subcategory: z.string().optional(),
+      subcategorySlug: z.string().optional(),
+      brand: z.string().optional(),
       badge: z.string().nullable().optional(),
       inStock: z.boolean().optional(),
+      stock: z.number().min(0).optional(),
       description: z.string().min(1).optional(),
       specifications: z.record(z.string()).optional(),
+      datasheet: z.string().url().optional(),
     })
 
     // Validate request body
@@ -95,9 +150,30 @@ export async function PUT(
       updateData.slug = newSlug
     }
 
+    // Generate category slug if category is updated
+    if (data.category) {
+      updateData.categorySlug = data.category
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")
+    }
+
+    // Generate subcategory slug if subcategory is updated
+    if (data.subcategory) {
+      updateData.subcategorySlug = data.subcategory
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")
+    }
+
     // Convert specifications to JSON string if provided
     if (data.specifications) {
       updateData.specifications = JSON.stringify(data.specifications)
+    }
+
+    // Convert images array to JSON string if provided
+    if (data.images) {
+      updateData.images = JSON.stringify(data.images)
     }
 
     // Update product (only specified fields)
@@ -106,10 +182,11 @@ export async function PUT(
       data: updateData,
     })
 
-    // Parse specifications back to object for response
+    // Parse specifications and images back to objects for response
     const productWithParsedSpecs = {
       ...product,
       specifications: JSON.parse(product.specifications),
+      images: product.images ? JSON.parse(product.images) : [],
     }
 
     return NextResponse.json(

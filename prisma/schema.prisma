@@ -33,9 +33,12 @@ model Product {
   slug             String      @unique
   price            Float
   originalPrice    Float
+  discountPercent  Float?      // Discount percentage (0-100)
+  discountAmount   Float?      // Fixed discount amount
   rating           Float       @default(0)
   reviews          Int          @default(0)
-  image            String
+  image            String      // Primary image
+  images           String?     // JSON array of additional images
   category         String
   categorySlug     String
   subcategory      String?
@@ -43,6 +46,7 @@ model Product {
   brand            String?
   badge            String?
   inStock          Boolean     @default(true)
+  stock            Int         @default(0)
   description      String
   specifications   String      // JSON string
   datasheet        String?     // URL to datasheet/manual
