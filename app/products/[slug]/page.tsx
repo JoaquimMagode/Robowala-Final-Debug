@@ -117,7 +117,8 @@ export default function ProductPage() {
               height={600}
               className="object-contain w-full h-full p-4"
               onError={(e) => {
-                e.currentTarget.src = "/placeholder.jpg"
+                const target = e.target as HTMLImageElement
+                target.src = "/placeholder.jpg"
               }}
             />
           </div>
