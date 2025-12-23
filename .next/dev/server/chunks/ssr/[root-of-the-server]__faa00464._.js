@@ -572,12 +572,12 @@ const useCartStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documen
         total: 0,
         isLoading: false,
         isAuthenticated: false,
-        setAuthenticated: (isAuth)=>{
+        setAuthenticated: async (isAuth)=>{
             set({
                 isAuthenticated: isAuth
             });
             if (isAuth) {
-                get().fetchCart();
+                await get().fetchCart();
             } else {
                 set({
                     items: [],
@@ -607,7 +607,7 @@ const useCartStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documen
             } catch (error) {
                 console.error("Failed to fetch cart:", error);
                 // If unauthorized, clear cart
-                if (error.status === 401) {
+                if (error && typeof error === 'object' && 'status' in error && error.status === 401) {
                     set({
                         items: [],
                         subtotal: 0,
@@ -623,35 +623,39 @@ const useCartStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documen
             }
         },
         addItem: async (product, quantity = 1)=>{
+            const calculateTotals = (items)=>{
+                const subtotal = items.reduce((total, item)=>total + item.product.originalPrice * item.quantity, 0);
+                const discount = items.reduce((total, item)=>total + (item.product.originalPrice - item.product.price) * item.quantity, 0);
+                const total = items.reduce((total, item)=>total + item.product.price * item.quantity, 0);
+                return {
+                    subtotal,
+                    discount,
+                    total
+                };
+            };
             if (!get().isAuthenticated) {
                 // For non-authenticated users, store in local state
                 set((state)=>{
                     const existingItem = state.items.find((item)=>item.product.id === product.id);
+                    let newItems;
                     if (existingItem) {
-                        const newItems = state.items.map((item)=>item.product.id === product.id ? {
+                        newItems = state.items.map((item)=>item.product.id === product.id ? {
                                 ...item,
                                 quantity: item.quantity + quantity
                             } : item);
-                        return {
-                            items: newItems,
-                            subtotal: newItems.reduce((total, item)=>total + item.product.originalPrice * item.quantity, 0),
-                            discount: newItems.reduce((total, item)=>total + (item.product.originalPrice - item.product.price) * item.quantity, 0),
-                            total: newItems.reduce((total, item)=>total + item.product.price * item.quantity, 0)
-                        };
+                    } else {
+                        newItems = [
+                            ...state.items,
+                            {
+                                id: `local-${Date.now()}`,
+                                product,
+                                quantity
+                            }
+                        ];
                     }
-                    const newItems = [
-                        ...state.items,
-                        {
-                            id: `local-${Date.now()}`,
-                            product,
-                            quantity
-                        }
-                    ];
                     return {
                         items: newItems,
-                        subtotal: newItems.reduce((total, item)=>total + item.product.originalPrice * item.quantity, 0),
-                        discount: newItems.reduce((total, item)=>total + (item.product.originalPrice - item.product.price) * item.quantity, 0),
-                        total: newItems.reduce((total, item)=>total + item.product.price * item.quantity, 0)
+                        ...calculateTotals(newItems)
                     };
                 });
                 return;
@@ -809,9 +813,9 @@ function AuthProvider({ children }) {
     const setAuthenticated = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$cart$2d$store$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCartStore"])((state)=>state.setAuthenticated);
     const fetchCart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$cart$2d$store$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCartStore"])((state)=>state.fetchCart);
     const [isInitialized, setIsInitialized] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const isAuth = status === "authenticated" && !!session?.user;
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (status === "loading") return;
-        const isAuth = status === "authenticated" && !!session?.user;
         setAuthenticated(isAuth);
         if (isAuth && !isInitialized) {
             fetchCart();
@@ -824,18 +828,24 @@ function AuthProvider({ children }) {
         session,
         setAuthenticated,
         fetchCart,
-        isInitialized
+        isInitialized,
+        isAuth
     ]);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(AuthContext.Provider, {
-        value: {
-            isAuthenticated: status === "authenticated" && !!session?.user,
+    const value = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>({
+            isAuthenticated: isAuth,
             isLoading: status === "loading",
             user: session?.user || null
-        },
+        }), [
+        isAuth,
+        status,
+        session?.user
+    ]);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(AuthContext.Provider, {
+        value: value,
         children: children
     }, void 0, false, {
         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/lib/auth-context.tsx",
-        lineNumber: 40,
+        lineNumber: 47,
         columnNumber: 5
     }, this);
 }
@@ -2588,7 +2598,7 @@ function Header() {
                                 alt: "ROBOWALA",
                                 width: 200,
                                 height: 72,
-                                className: "h-18 w-auto",
+                                className: "h-16 w-auto",
                                 priority: true
                             }, void 0, false, {
                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/layout/header.tsx",

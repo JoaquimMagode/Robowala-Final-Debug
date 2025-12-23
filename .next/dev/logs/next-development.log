@@ -1,3 +1,537 @@
-[00:00:04.292] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:04.820] Server  LOG      ✓ Ready in 3.6s
-[00:11:03.282] Server  LOG      ○ Compiling /login ...
+[00:00:03.801] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:04.729] Server  LOG      ✓ Ready in 4s
+[00:00:23.696] Server  LOG      ○ Compiling / ...
+[00:00:39.019] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:39.019] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:39.019] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490334052}
+[00:00:41.386] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:41.497] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:41.533] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:41.559] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:41.582] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:41.601] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:41.605] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:41.608] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:41.618] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:41.642] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:00:41.785] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:00:45.564] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2a70ced9._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.572] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.671] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_next_6777781f._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.672] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.679] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.687] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.691] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.695] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.699] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.703] Server  ERROR   Cart fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].cartItem.findMany()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2a70ced9._.js:282:213
+
+  279 if (error) return error;
+  280 const userId = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getUserId"])();
+  281 // Get cart items with product details
+→ 282 const cartItems = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].cartItem.findMany(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:00:45.834] Browser ERROR   Failed to fetch cart: {"name":"APIError","status":500}
+[00:00:45.882] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2a70ced9._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.887] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.889] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_next_6777781f._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.891] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.893] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.896] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.897] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.899] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.901] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:45.903] Server  ERROR   Cart fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].cartItem.findMany()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2a70ced9._.js:282:213
+
+  279 if (error) return error;
+  280 const userId = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getUserId"])();
+  281 // Get cart items with product details
+→ 282 const cartItems = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].cartItem.findMany(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:00:46.032] Browser ERROR   Failed to fetch cart: {"name":"APIError","status":500}
+[00:00:46.115] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2a70ced9._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.122] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.123] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_next_6777781f._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.126] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.127] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.129] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.130] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.132] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.136] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.138] Server  ERROR   Cart fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].cartItem.findMany()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2a70ced9._.js:282:213
+
+  279 if (error) return error;
+  280 const userId = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getUserId"])();
+  281 // Get cart items with product details
+→ 282 const cartItems = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].cartItem.findMany(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:00:46.267] Browser ERROR   Failed to fetch cart: {"name":"APIError","status":500}
+[00:00:46.277] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2a70ced9._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.282] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.284] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_next_6777781f._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.287] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.290] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.292] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.293] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.295] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.296] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:46.297] Server  ERROR   Cart fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].cartItem.findMany()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__2a70ced9._.js:282:213
+
+  279 if (error) return error;
+  280 const userId = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$auth$2d$helpers$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getUserId"])();
+  281 // Get cart items with product details
+→ 282 const cartItems = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].cartItem.findMany(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:00:46.416] Browser ERROR   Failed to fetch cart: {"name":"APIError","status":500}
+[00:01:09.810] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products?category=drone-parts color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products?category=drone-parts","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490364842}
+[00:01:10.059] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.063] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.065] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.066] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.067] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.069] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.069] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.070] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.071] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.072] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:10.102] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.109] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.112] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.119] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.122] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.123] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.124] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.127] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.128] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:10.129] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:10.295] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:10.295] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:27.019] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:27.023] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:27.024] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:27.025] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:27.026] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:27.029] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:27.031] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:27.032] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:27.035] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:27.036] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:27.162] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:50.834] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.844] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.846] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.848] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.850] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.854] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.855] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.857] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.858] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.861] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:50.870] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490405874}
+[00:01:50.918] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.927] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.931] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.939] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.940] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.943] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.947] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.948] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.950] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:50.951] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:51.065] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:51.065] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:51.533] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.535] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.537] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.538] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.540] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.541] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.544] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.545] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.546] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.547] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:51.736] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490406642}
+[00:01:51.736] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:51.773] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.777] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.778] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.781] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.787] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.788] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.792] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.794] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.795] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:51.797] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:51.979] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:54.374] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/bulk-enquiry color: rgb(120, 120, 120) color: inherit {"dp":"/bulk-enquiry","o":"http://localhost:3000/bulk-enquiry","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490409354}
+[00:01:55.867] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.870] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.871] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.873] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.875] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.877] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.878] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.879] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.880] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.882] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:55.916] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.919] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.922] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.923] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.926] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.929] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.933] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.934] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.935] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:55.935] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:56.073] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490410945}
+[00:01:56.073] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:56.073] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:56.787] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/bulk-enquiry color: rgb(120, 120, 120) color: inherit {"dp":"/bulk-enquiry","o":"http://localhost:3000/bulk-enquiry","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490411783}
+[00:01:58.745] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.749] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.750] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.752] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.754] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.755] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.756] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.757] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.759] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.759] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:58.786] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.789] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.790] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.793] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.795] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.796] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.797] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.798] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.798] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:58.800] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:01:58.942] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490413831}
+[00:01:58.942] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:01:58.942] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:02:01.424] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/blog color: rgb(120, 120, 120) color: inherit {"dp":"/blog","o":"http://localhost:3000/blog","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490416452}
+[00:02:02.689] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/about color: rgb(120, 120, 120) color: inherit {"dp":"/about","o":"http://localhost:3000/about","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490417724}
+[00:02:03.029] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.031] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.032] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.033] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.034] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.034] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.035] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.036] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.037] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.038] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:02:03.060] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.063] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.063] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_f92b7f7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.064] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.065] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.065] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.066] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.066] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.067] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:03.067] Server  ERROR   Products fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__563a2596._.js:111:208
+
+  108     ];
+  109 }
+  110 // Get total count for pagination
+→ 111 const total = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].product.count(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:02:03.174] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490418112}
+[00:02:03.174] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:02:03.174] Browser ERROR   Failed to fetch products: {"name":"APIError","status":500}
+[00:02:06.808] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/orders color: rgb(120, 120, 120) color: inherit {"dp":"/orders","o":"http://localhost:3000/orders","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766490421848}
+[00:02:07.282] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__1eec7d9d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.283] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.298] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_next_4efe9089._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.299] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.299] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.300] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.301] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.302] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.303] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.303] Server  ERROR   Orders fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].order.findMany()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__1eec7d9d._.js:367:207
+
+  364 if (error) return error;
+  365 const userId = await getUserId();
+  366 // Get user's orders
+→ 367 const orders = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].order.findMany(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:02:07.555] Browser ERROR   Failed to fetch orders: {"name":"APIError","status":500}
+[00:02:07.612] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__1eec7d9d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.615] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.615] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\48ee0_next_4efe9089._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.616] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.618] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.619] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.621] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.622] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.625] Server  ERROR   c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:07.626] Server  ERROR   Orders fetch error: PrismaClientInitializationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].order.findMany()` invocation in
+c:\Users\Joaquim Magode\Documents\GitHub\Robowala-Final-Debug\.next\dev\server\chunks\[root-of-the-server]__1eec7d9d._.js:367:207
+
+  364 if (error) return error;
+  365 const userId = await getUserId();
+  366 // Get user's orders
+→ 367 const orders = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].order.findMany(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:11
+   | 
+10 |   provider = "postgresql"
+11 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[00:02:07.739] Browser ERROR   Failed to fetch orders: {"name":"APIError","status":500}
