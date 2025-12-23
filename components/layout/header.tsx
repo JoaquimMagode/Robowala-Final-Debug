@@ -71,11 +71,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { getItemCount, total, items } = useCartStore((state) => ({
-    getItemCount: state.getItemCount,
-    total: state.total,
-    items: state.items
-  }))
+  const { getItemCount, total, items } = useCartStore()
   const { isAuthenticated, user, isLoading } = useAuth()
 
   useEffect(() => {

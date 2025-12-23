@@ -215,9 +215,6 @@ export const useCartStore = create<CartStore>()(
         total: state.isAuthenticated ? 0 : state.total,
         isAuthenticated: state.isAuthenticated,
       }),
-      onRehydrateStorage: () => (state) => {
-        // Cart rehydrated
-      },
     },
   ),
 )
