@@ -10,19 +10,12 @@ import { productsAPI } from "@/lib/api-client"
 function ProductCard({ product }: { product: any }) {
   const addItem = useCartStore((state) => state.addItem)
 
-  const handleAddToCart = () => {
-    // Use local storage directly instead of API
-    const cartItems = JSON.parse(localStorage.getItem('cart') || '[]')
-    const existingItem = cartItems.find((item: any) => item.id === product.id)
-    
-    if (existingItem) {
-      existingItem.quantity += 1
-    } else {
-      cartItems.push({ ...product, quantity: 1 })
+  const handleAddToCart = async () => {
+    try {
+      await addItem(product, 1)
+    } catch (error) {
+      console.error('Failed to add to cart:', error)
     }
-    
-    localStorage.setItem('cart', JSON.stringify(cartItems))
-    console.log('Added to cart:', product.name)
   }
 
   const discount = product.originalPrice > 0 ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0
