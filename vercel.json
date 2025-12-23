@@ -4,8 +4,5 @@
       "maxDuration": 30
     }
   },
-  "env": {
-    "PRISMA_GENERATE_DATAPROXY": "true"
-  },
   "buildCommand": "cp prisma/schema.production.prisma prisma/schema.prisma && prisma generate && next build"
 }
