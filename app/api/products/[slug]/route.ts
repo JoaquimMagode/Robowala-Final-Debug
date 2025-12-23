@@ -23,10 +23,18 @@ export async function GET(
       )
     }
 
-    // Parse specifications and fix image path
+    // Parse specifications safely
+    let specifications = {}
+    try {
+      specifications = product.specifications ? JSON.parse(product.specifications) : {}
+    } catch (parseError) {
+      console.error("Failed to parse specifications:", parseError)
+      specifications = {}
+    }
+
+    // Fix image path
     let imagePath = product.image
     if (imagePath && !imagePath.startsWith('http')) {
-      // Remove leading slash if present and add /products/ prefix
       imagePath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath
       imagePath = `/products/${imagePath}`
     }
@@ -34,7 +42,7 @@ export async function GET(
     const productWithParsedSpecs = {
       ...product,
       image: imagePath || '/placeholder.jpg',
-      specifications: JSON.parse(product.specifications),
+      specifications,
     }
 
     return NextResponse.json(
