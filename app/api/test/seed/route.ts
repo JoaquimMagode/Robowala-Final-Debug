@@ -1,51 +1,97 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/db"
+import bcrypt from "bcryptjs"
 
 export async function GET() {
   try {
     const count = await prisma.product.count()
     
     if (count === 0) {
+      // Create admin user
+      const hashedPassword = await bcrypt.hash("admin123", 12)
+      await prisma.user.upsert({
+        where: { email: "admin@robowala.com" },
+        update: {},
+        create: {
+          email: "admin@robowala.com",
+          name: "Admin User",
+          password: hashedPassword,
+          role: "ADMIN",
+        },
+      })
+
       const products = [
         {
-          name: "F450 Quadcopter Frame Kit",
-          slug: "f450-quadcopter-frame",
-          price: 1299,
-          originalPrice: 1699,
-          rating: 4.6,
-          reviews: 145,
-          image: "/f450-quadcopter-frame.jpg",
-          category: "Drone Parts",
-          categorySlug: "drone-parts",
-          subcategory: "Frames",
-          subcategorySlug: "drone-frames",
-          brand: "DJI",
+          name: "ESP32-WROOM-32 DevKit",
+          slug: "esp32-wroom-32-devkit",
+          price: 499,
+          originalPrice: 699,
+          rating: 4.8,
+          reviews: 678,
+          image: "/esp32-development-board-wifi-bluetooth-microcontro.jpg",
+          category: "Microcontrollers",
+          categorySlug: "microcontrollers",
+          subcategory: "ESP32 Boards",
+          subcategorySlug: "esp32",
+          brand: "Espressif",
+          badge: "Bestseller",
           inStock: true,
-          description: "Durable quadcopter frame kit with 450mm wheelbase, perfect for DIY drones.",
+          description: "Powerful WiFi & Bluetooth enabled microcontroller for IoT projects.",
           specifications: JSON.stringify({
-            Wheelbase: "450mm",
-            Material: "Glass Fiber + Nylon",
-            Weight: "282g"
+            CPU: "Dual-core Xtensa @ 240MHz",
+            Flash: "4MB",
+            RAM: "520KB SRAM",
+            WiFi: "802.11 b/g/n",
+            Bluetooth: "BLE 4.2",
+            GPIO: "34 pins",
           }),
         },
         {
-          name: "LM2596 Buck Converter Module",
-          slug: "lm2596-buck-converter",
-          price: 89,
-          originalPrice: 129,
-          rating: 4.5,
-          reviews: 678,
-          image: "/lm2596-buck-converter.jpg",
-          category: "Power Supply",
-          categorySlug: "power-supply",
-          subcategory: "Buck Converters",
-          subcategorySlug: "buck-converters",
-          brand: "Texas Instruments",
+          name: "4WD Robot Car Chassis Kit",
+          slug: "4wd-robot-car-kit",
+          price: 1899,
+          originalPrice: 2499,
+          rating: 4.7,
+          reviews: 234,
+          image: "/4wd-robot-car-chassis-kit-arduino-compatible.jpg",
+          category: "Learning Kits",
+          categorySlug: "kits",
+          subcategory: "Robotics Kits",
+          subcategorySlug: "robotics-kits",
+          brand: null,
+          badge: "Kit",
           inStock: true,
-          description: "Adjustable step-down voltage regulator module.",
+          description: "Complete 4WD robot car chassis kit with motors and wheels.",
           specifications: JSON.stringify({
-            "Input Voltage": "4.5V - 40V",
-            "Output Voltage": "1.25V - 37V (adjustable)"
+            Motors: "4x TT DC Motors",
+            Wheels: "4x 65mm diameter",
+            Material: "Acrylic",
+            "Battery Holder": "4x AA (not included)",
+            Dimensions: "200mm x 150mm",
+          }),
+        },
+        {
+          name: "2212 920KV Brushless Motor",
+          slug: "2212-920kv-motor",
+          price: 649,
+          originalPrice: 849,
+          rating: 4.7,
+          reviews: 234,
+          image: "/2212-brushless-motor.jpg",
+          category: "Drone Parts",
+          categorySlug: "drone-parts",
+          subcategory: "Drone Motors",
+          subcategorySlug: "drone-motors",
+          brand: "Emax",
+          badge: "Popular",
+          inStock: true,
+          description: "High-quality brushless motor for quadcopters and multirotors.",
+          specifications: JSON.stringify({
+            KV: "920",
+            "Max Current": "15A",
+            Voltage: "11.1V (3S)",
+            Weight: "55g",
+            "Shaft Diameter": "3.17mm",
           }),
         }
       ]
