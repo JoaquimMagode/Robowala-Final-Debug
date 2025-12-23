@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronRight } from "lucide-react"
 import { productsAPI } from "@/lib/api-client"
 import { ProductGallery } from "@/components/products/product-gallery"
@@ -59,7 +60,7 @@ export default function ProductPage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
+          <h1 className="text-2xl font-bold mb-4">Product Not Founded</h1>
           <p className="text-muted-foreground mb-4">The product you're looking for doesn't exist.</p>
           <Link href="/products" className="text-primary hover:underline">
             Back to Products
@@ -91,6 +92,21 @@ export default function ProductPage() {
         <div className="grid gap-8 lg:grid-cols-2">
           <ProductGallery product={product} />
           <ProductInfo product={product} />
+
+          <Link href={`/products/${product.slug}`} className="block p-3">
+        <div className="relative aspect-square overflow-hidden rounded bg-secondary">
+          <Image
+            src={product.image || "/placeholder.jpg"}
+            alt={product.name}
+            fill
+            className="object-contain p-2 transition-transform group-hover:scale-105"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement
+              target.src = "/placeholder.jpg"
+            }}
+          />
+        </div>
+      </Link>
         </div>
       </div>
     </div>

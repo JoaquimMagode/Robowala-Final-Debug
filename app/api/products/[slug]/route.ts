@@ -35,13 +35,14 @@ export async function GET(
     // Fix image path
     let imagePath = product.image
     if (imagePath && !imagePath.startsWith('http')) {
-      imagePath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath
-      imagePath = `/products/${imagePath}`
+      if (!imagePath.startsWith('/')) {
+        imagePath = `/${imagePath}`
+      }
     }
     
     const productWithParsedSpecs = {
       ...product,
-      image: imagePath || '/placeholder.jpg',
+      image: imagePath || '/placeholder.svg',
       specifications,
     }
 
