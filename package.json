@@ -71,6 +71,7 @@
     "react-resizable-panels": "^2.1.7",
     "recharts": "latest",
     "sonner": "^1.7.4",
+    "sqlite3": "^5.1.7",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "use-sync-external-store": "latest",
