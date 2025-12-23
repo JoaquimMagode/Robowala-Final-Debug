@@ -29,7 +29,7 @@ interface Customer {
   email: string
 }
 
-export default function CustomerOrdersPage({ params }: { params: { id: string } }) {
+export default function CustomerOrdersPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
   const { isAuthenticated, user, isLoading: authLoading } = useAuth()
   const [customer, setCustomer] = useState<Customer | null>(null)
@@ -37,6 +37,11 @@ export default function CustomerOrdersPage({ params }: { params: { id: string } 
   const [search, setSearch] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState("")
+  const [customerId, setCustomerId] = useState<string | null>(null)
+
+  useEffect(() => {
+    params.then(({ id }) => setCustomerId(id))
+  }, [params])
 
   useEffect(() => {
     if (!authLoading && (!isAuthenticated || user?.role !== "ADMIN")) {
@@ -44,16 +49,22 @@ export default function CustomerOrdersPage({ params }: { params: { id: string } 
       return
     }
 
-    if (isAuthenticated && user?.role === "ADMIN") {
+    if (isAuthenticated && user?.role === "ADMIN" && customerId) {
       fetchCustomerOrders()
     }
-  }, [isAuthenticated, user, authLoading, router])
+  }, [isAuthenticated, user, authLoading, router, customerId])
 
   const fetchCustomerOrders = async () => {
+    if (!customerId) {
+      setError("Invalid customer ID")
+      setIsLoading(false)
+      return
+    }
+
     setIsLoading(true)
     setError("")
     try {
-      const response = await fetch(`/api/admin/customers/${params.id}/orders`)
+      const response = await fetch(`/api/admin/customers/${customerId}/orders`)
       if (!response.ok) {
         throw new Error("Failed to fetch customer orders")
       }

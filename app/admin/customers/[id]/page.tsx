@@ -26,12 +26,17 @@ interface Customer {
   }>
 }
 
-export default function CustomerDetailPage({ params }: { params: { id: string } }) {
+export default function CustomerDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
   const { isAuthenticated, user, isLoading: authLoading } = useAuth()
   const [customer, setCustomer] = useState<Customer | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState("")
+  const [customerId, setCustomerId] = useState<string | null>(null)
+
+  useEffect(() => {
+    params.then(({ id }) => setCustomerId(id))
+  }, [params])
 
   useEffect(() => {
     if (!authLoading && (!isAuthenticated || user?.role !== "ADMIN")) {
@@ -39,16 +44,22 @@ export default function CustomerDetailPage({ params }: { params: { id: string } 
       return
     }
 
-    if (isAuthenticated && user?.role === "ADMIN") {
+    if (isAuthenticated && user?.role === "ADMIN" && customerId) {
       fetchCustomer()
     }
-  }, [isAuthenticated, user, authLoading, router])
+  }, [isAuthenticated, user, authLoading, router, customerId])
 
   const fetchCustomer = async () => {
+    if (!customerId) {
+      setError("Invalid customer ID")
+      setIsLoading(false)
+      return
+    }
+
     setIsLoading(true)
     setError("")
     try {
-      const response = await fetch(`/api/admin/customers/${params.id}`)
+      const response = await fetch(`/api/admin/customers/${customerId}`)
       if (!response.ok) {
         throw new Error("Customer not found")
       }
@@ -173,7 +184,7 @@ export default function CustomerDetailPage({ params }: { params: { id: string } 
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>Recent Orders</CardTitle>
           <Button asChild variant="outline" size="sm">
-            <Link href={`/admin/customers/${customer.id}/orders`}>
+            <Link href={`/admin/customers/${customerId}/orders`}>
               View All Orders
             </Link>
           </Button>

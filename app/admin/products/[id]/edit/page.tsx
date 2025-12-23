@@ -26,12 +26,17 @@ interface Product {
   datasheet?: string
 }
 
-export default function EditProductPage({ params }: { params: { id: string } }) {
+export default function EditProductPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
   const { isAuthenticated, user, isLoading: authLoading } = useAuth()
   const [product, setProduct] = useState<Product | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState("")
+  const [productId, setProductId] = useState<string | null>(null)
+
+  useEffect(() => {
+    params.then(({ id }) => setProductId(id))
+  }, [params])
 
   useEffect(() => {
     if (!authLoading && (!isAuthenticated || user?.role !== "ADMIN")) {
@@ -39,14 +44,20 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
       return
     }
 
-    if (isAuthenticated && user?.role === "ADMIN") {
+    if (isAuthenticated && user?.role === "ADMIN" && productId) {
       fetchProduct()
     }
-  }, [isAuthenticated, user, authLoading, router])
+  }, [isAuthenticated, user, authLoading, router, productId])
 
   const fetchProduct = async () => {
+    if (!productId) {
+      setError("Invalid product ID")
+      setIsLoading(false)
+      return
+    }
+
     try {
-      const response = await fetch(`/api/admin/products/${params.id}`)
+      const response = await fetch(`/api/admin/products/${productId}`)
       const data = await response.json()
       
       if (!response.ok) {
@@ -101,7 +112,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
         <p className="text-sm text-muted-foreground">Update product information</p>
       </div>
 
-      <ProductForm productId={params.id} initialData={product} />
+      <ProductForm productId={productId} initialData={product} />
     </div>
   )
 }
