@@ -22,12 +22,16 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const { isAuthenticated } = useAuth()
   const { toast } = useToast()
 
+  console.log('ProductInfo rendering:', { productName: product.name, productId: product.id })
+
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1)
   const decrementQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
 
   const handleAddToCart = async () => {
+    console.log('Add to cart clicked for product:', product.id)
+    
     if (!product.inStock) {
       toast({
         title: "Out of Stock",
@@ -39,7 +43,9 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
     setIsAddingToCart(true)
     try {
+      console.log('Adding to cart:', { product: product.id, quantity })
       await addItem(product, quantity)
+      console.log('Successfully added to cart')
       toast({
         title: "Added to Cart",
         description: `${product.name} has been added to your cart.`,

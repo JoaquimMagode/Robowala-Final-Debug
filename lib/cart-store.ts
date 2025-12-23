@@ -41,10 +41,11 @@ export const useCartStore = create<CartStore>()(
       isLoading: false,
       isAuthenticated: false,
 
-      setAuthenticated: async (isAuth: boolean) => {
+      setAuthenticated: (isAuth: boolean) => {
+        console.log('Setting authenticated:', isAuth)
         set({ isAuthenticated: isAuth })
         if (isAuth) {
-          await get().fetchCart()
+          get().fetchCart()
         } else {
           set({ items: [], subtotal: 0, discount: 0, total: 0 })
         }
