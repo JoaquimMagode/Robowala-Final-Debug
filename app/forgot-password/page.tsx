@@ -7,7 +7,7 @@ export default function ForgotPasswordPage() {
             Forgot Password
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            This feature is not implemented yet.
+            Password reset feature coming soon.
           </p>
         </div>
       </div>
