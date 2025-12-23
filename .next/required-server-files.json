@@ -99,7 +99,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\shalin rathod\\OneDrive\\robowala final",
+    "outputFileTracingRoot": "c:\\Users\\Joaquim Magode",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -157,7 +157,7 @@
       "proxyPrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
-      "cpus": 15,
+      "cpus": 7,
       "memoryBasedWorkersCount": false,
       "imgOptConcurrency": null,
       "imgOptTimeoutInSeconds": 7,
@@ -289,12 +289,12 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.mjs",
     "turbopack": {
-      "root": "C:\\Users\\shalin rathod\\OneDrive\\robowala final"
+      "root": "c:\\Users\\Joaquim Magode"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "C:\\Users\\shalin rathod\\OneDrive\\robowala final",
-  "relativeAppDir": "",
+  "appDir": "c:\\Users\\Joaquim Magode\\Documents\\GitHub\\Robowala-Final-Debug",
+  "relativeAppDir": "Documents\\GitHub\\Robowala-Final-Debug",
   "files": [
     ".next\\routes-manifest.json",
     ".next\\server\\pages-manifest.json",

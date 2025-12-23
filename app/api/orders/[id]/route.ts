@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
     // Require authentication
@@ -14,7 +14,7 @@ export async function GET(
     if (error) return error
 
     const userId = await getUserId()
-    const { id } = await params
+    const { id } = params
 
     // Get order with items
     const order = await prisma.order.findUnique({

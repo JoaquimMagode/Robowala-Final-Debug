@@ -77,6 +77,14 @@
       "namedRegex": "^/blog/(?<nxtPslug>[^/]+?)(?:/)?$"
     },
     {
+      "page": "/brands/[brand]",
+      "regex": "^/brands/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPbrand": "nxtPbrand"
+      },
+      "namedRegex": "^/brands/(?<nxtPbrand>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/orders/[id]",
       "regex": "^/orders/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -243,6 +251,12 @@
       "regex": "^/checkout/success(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/checkout/success(?:/)?$"
+    },
+    {
+      "page": "/compare",
+      "regex": "^/compare(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/compare(?:/)?$"
     },
     {
       "page": "/contact",

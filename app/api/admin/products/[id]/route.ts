@@ -7,14 +7,14 @@ const prisma = new PrismaClient()
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
     // Require admin authentication
     const { error } = await requireAdmin()
     if (error) return error
 
-    const { id } = await params
+    const { id } = params
     const body = await request.json()
 
     // Validation schema for product update (all fields optional for partial updates)
@@ -135,14 +135,14 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
     // Require admin authentication
     const { error } = await requireAdmin()
     if (error) return error
 
-    const { id } = await params
+    const { id } = params
 
     // Check if product exists
     const existingProduct = await prisma.product.findUnique({

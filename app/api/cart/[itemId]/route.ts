@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ itemId: string }> }
+  { params }: { params: { itemId: string } }
 ) {
   try {
     // Require authentication
@@ -15,7 +15,7 @@ export async function PUT(
     if (error) return error
 
     const userId = await getUserId()
-    const { itemId } = await params
+    const { itemId } = params
     const body = await request.json()
 
     // Validation schema
@@ -104,7 +104,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ itemId: string }> }
+  { params }: { params: { itemId: string } }
 ) {
   try {
     // Require authentication
@@ -112,7 +112,7 @@ export async function DELETE(
     if (error) return error
 
     const userId = await getUserId()
-    const { itemId } = await params
+    const { itemId } = params
 
     // Check if cart item exists and belongs to user
     const cartItem = await prisma.cartItem.findUnique({
