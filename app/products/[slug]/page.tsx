@@ -13,7 +13,6 @@ import type { Product } from "@/lib/products"
 export default function ProductPage() {
   const params = useParams()
   const slug = params.slug as string
-
   const [product, setProduct] = useState<Product | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
