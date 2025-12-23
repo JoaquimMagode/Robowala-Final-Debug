@@ -27,6 +27,7 @@ import {
   User,
   LogOut,
   ShoppingBag,
+  Settings,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -162,6 +163,17 @@ export function Header() {
                     <DropdownMenuContent align="end" className="w-56">
                       <DropdownMenuLabel>My Account</DropdownMenuLabel>
                       <DropdownMenuSeparator />
+                      {user?.role === "ADMIN" && (
+                        <>
+                          <DropdownMenuItem asChild>
+                            <Link href="/admin" className="cursor-pointer">
+                              <Settings className="mr-2 h-4 w-4" />
+                              Dashboard
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                        </>
+                      )}
                       <DropdownMenuItem asChild>
                         <Link href="/orders" className="cursor-pointer">
                           <ShoppingBag className="mr-2 h-4 w-4" />

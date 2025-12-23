@@ -33,14 +33,6 @@ export function AdminSidebar() {
 
   return (
     <>
-      {/* Mobile Header */}
-      <div className="fixed left-0 right-0 top-0 z-40 flex h-14 items-center justify-between border-b border-border bg-background px-4 lg:hidden">
-        <Image src="/images/image.png" alt="ROBO WALA" width={100} height={40} className="h-8 w-auto" />
-        <Button variant="ghost" size="icon">
-          <Menu className="h-5 w-5" />
-        </Button>
-      </div>
-
       {/* Desktop Sidebar */}
       <aside
         className={cn(
