@@ -47,12 +47,15 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
   const fetchProduct = async () => {
     try {
       const response = await fetch(`/api/admin/products/${params.id}`)
-      if (!response.ok) {
-        throw new Error("Product not found")
-      }
       const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(data.message || "Product not found")
+      }
+      
       setProduct(data.product)
     } catch (err: any) {
+      console.error("Product fetch error:", err)
       setError(err.message)
     } finally {
       setIsLoading(false)

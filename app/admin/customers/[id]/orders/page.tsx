@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Search, Filter, MoreHorizontal, Eye, Truck, XCircle, Loader2 } from "lucide-react"
+import { ArrowLeft, Search, Filter, MoreHorizontal, Eye, Truck, XCircle, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator, DropdownMenuLabel } from "@/components/ui/dropdown-menu"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { adminOrdersAPI } from "@/lib/api-client"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAuth } from "@/lib/auth-context"
 
 interface Order {
@@ -18,31 +17,22 @@ interface Order {
   status: string
   total: number
   createdAt: string
-  user: {
-    name: string
-    email: string
-  }
   items: Array<{
     id: string
     quantity: number
   }>
 }
 
-const statusColors: Record<string, string> = {
-  PENDING: "bg-yellow-500/10 text-yellow-600 border-yellow-500/20",
-  PROCESSING: "bg-blue-500/10 text-blue-600 border-blue-500/20",
-  IN_TRANSIT: "bg-indigo-500/10 text-indigo-600 border-indigo-500/20",
-  ON_THE_WAY: "bg-cyan-500/10 text-cyan-600 border-cyan-500/20",
-  OUT_FOR_DELIVERY: "bg-orange-500/10 text-orange-600 border-orange-500/20",
-  SHIPPED: "bg-purple-500/10 text-purple-600 border-purple-500/20",
-  DELIVERED: "bg-green-500/10 text-green-600 border-green-500/20",
-  DELAYED: "bg-amber-500/10 text-amber-600 border-amber-500/20",
-  CANCELLED: "bg-red-500/10 text-red-600 border-red-500/20",
+interface Customer {
+  id: string
+  name: string
+  email: string
 }
 
-export default function OrdersPage() {
+export default function CustomerOrdersPage({ params }: { params: { id: string } }) {
   const router = useRouter()
   const { isAuthenticated, user, isLoading: authLoading } = useAuth()
+  const [customer, setCustomer] = useState<Customer | null>(null)
   const [orders, setOrders] = useState<Order[]>([])
   const [search, setSearch] = useState("")
   const [isLoading, setIsLoading] = useState(true)
@@ -55,19 +45,24 @@ export default function OrdersPage() {
     }
 
     if (isAuthenticated && user?.role === "ADMIN") {
-      fetchOrders()
+      fetchCustomerOrders()
     }
   }, [isAuthenticated, user, authLoading, router])
 
-  const fetchOrders = async () => {
+  const fetchCustomerOrders = async () => {
     setIsLoading(true)
     setError("")
     try {
-      const data = await adminOrdersAPI.list({})
+      const response = await fetch(`/api/admin/customers/${params.id}/orders`)
+      if (!response.ok) {
+        throw new Error("Failed to fetch customer orders")
+      }
+      const data = await response.json()
+      setCustomer(data.customer)
       setOrders(data.orders)
     } catch (err: any) {
-      console.error("Failed to fetch orders:", err)
-      setError(err.message || "Failed to load orders")
+      console.error("Failed to fetch customer orders:", err)
+      setError(err.message || "Failed to load customer orders")
     } finally {
       setIsLoading(false)
     }
@@ -75,7 +70,16 @@ export default function OrdersPage() {
 
   const handleStatusUpdate = async (orderId: string, newStatus: string) => {
     try {
-      await adminOrdersAPI.updateStatus(orderId, newStatus)
+      const response = await fetch(`/api/admin/orders/${orderId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to update order status")
+      }
+
       setOrders(orders.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o)))
     } catch (err: any) {
       alert(err.message || "Failed to update order status")
@@ -91,11 +95,20 @@ export default function OrdersPage() {
     })
   }
 
-  const filteredOrders = orders.filter(
-    (o) =>
-      o.orderNumber.toLowerCase().includes(search.toLowerCase()) ||
-      o.user.name.toLowerCase().includes(search.toLowerCase()) ||
-      o.user.email.toLowerCase().includes(search.toLowerCase()),
+  const statusColors: Record<string, string> = {
+    PENDING: "bg-yellow-500/10 text-yellow-600 border-yellow-500/20",
+    PROCESSING: "bg-blue-500/10 text-blue-600 border-blue-500/20",
+    IN_TRANSIT: "bg-indigo-500/10 text-indigo-600 border-indigo-500/20",
+    ON_THE_WAY: "bg-cyan-500/10 text-cyan-600 border-cyan-500/20",
+    OUT_FOR_DELIVERY: "bg-orange-500/10 text-orange-600 border-orange-500/20",
+    SHIPPED: "bg-purple-500/10 text-purple-600 border-purple-500/20",
+    DELIVERED: "bg-green-500/10 text-green-600 border-green-500/20",
+    DELAYED: "bg-amber-500/10 text-amber-600 border-amber-500/20",
+    CANCELLED: "bg-red-500/10 text-red-600 border-red-500/20",
+  }
+
+  const filteredOrders = orders.filter((o) =>
+    o.orderNumber.toLowerCase().includes(search.toLowerCase())
   )
 
   if (authLoading || isLoading) {
@@ -108,9 +121,18 @@ export default function OrdersPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-foreground">Orders</h1>
-        <p className="text-sm text-muted-foreground">Manage and track customer orders ({orders.length} total)</p>
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="icon" onClick={() => router.back()}>
+          <ArrowLeft className="h-4 w-4" />
+        </Button>
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">
+            {customer?.name}'s Orders
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            {customer?.email} • {orders.length} total orders
+          </p>
+        </div>
       </div>
 
       {error && (
@@ -143,11 +165,9 @@ export default function OrdersPage() {
               <thead>
                 <tr className="border-b border-border text-left text-xs font-medium text-muted-foreground">
                   <th className="pb-3 pr-4">Order ID</th>
-                  <th className="pb-3 pr-4">Customer</th>
                   <th className="pb-3 pr-4">Items</th>
                   <th className="pb-3 pr-4">Total</th>
                   <th className="pb-3 pr-4">Status</th>
-                  <th className="pb-3 pr-4">Payment</th>
                   <th className="pb-3 pr-4">Date</th>
                   <th className="pb-3">Actions</th>
                 </tr>
@@ -155,7 +175,7 @@ export default function OrdersPage() {
               <tbody>
                 {filteredOrders.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="py-8 text-center text-muted-foreground">
+                    <td colSpan={6} className="py-8 text-center text-muted-foreground">
                       {search ? "No orders found matching your search" : "No orders yet"}
                     </td>
                   </tr>
@@ -166,12 +186,6 @@ export default function OrdersPage() {
                         <span className="text-sm font-medium font-mono">{order.orderNumber}</span>
                       </td>
                       <td className="py-4 pr-4">
-                        <div>
-                          <p className="text-sm font-medium">{order.user.name}</p>
-                          <p className="text-xs text-muted-foreground">{order.user.email}</p>
-                        </div>
-                      </td>
-                      <td className="py-4 pr-4">
                         <span className="text-sm">{order.items.length}</span>
                       </td>
                       <td className="py-4 pr-4">
@@ -180,11 +194,6 @@ export default function OrdersPage() {
                       <td className="py-4 pr-4">
                         <Badge variant="outline" className={statusColors[order.status]}>
                           {order.status}
-                        </Badge>
-                      </td>
-                      <td className="py-4 pr-4">
-                        <Badge variant="outline" className="bg-green-500/10 text-green-600 border-green-500/20">
-                          PAID
                         </Badge>
                       </td>
                       <td className="py-4 pr-4">
@@ -221,10 +230,6 @@ export default function OrdersPage() {
                             <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, "OUT_FOR_DELIVERY")}>
                               <Truck className="mr-2 h-4 w-4" />
                               Out for Delivery
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, "SHIPPED")}>
-                              <Truck className="mr-2 h-4 w-4" />
-                              Shipped
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, "DELIVERED")}>
                               <Truck className="mr-2 h-4 w-4" />

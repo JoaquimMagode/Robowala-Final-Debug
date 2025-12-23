@@ -19,7 +19,7 @@ export async function PUT(
 
     // Validation schema
     const updateOrderSchema = z.object({
-      status: z.enum(["PENDING", "PROCESSING", "SHIPPED", "DELIVERED", "CANCELLED"]),
+      status: z.enum(["PENDING", "PROCESSING", "IN_TRANSIT", "ON_THE_WAY", "OUT_FOR_DELIVERY", "SHIPPED", "DELIVERED", "DELAYED", "CANCELLED"]),
     })
 
     const validationResult = updateOrderSchema.safeParse(body)

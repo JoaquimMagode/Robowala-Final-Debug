@@ -72,7 +72,7 @@ export const productsAPI = {
   },
 
   create: (data: any) => {
-    return fetchAPI<{ product: any }>("/api/products", {
+    return fetchAPI<{ product: any }>("/api/admin/products", {
       method: "POST",
       body: JSON.stringify(data),
     })
