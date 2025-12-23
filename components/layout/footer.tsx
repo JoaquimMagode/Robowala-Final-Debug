@@ -49,7 +49,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/" className="mb-4 inline-block">
-              <Image src="/images/image.png" alt="ROBOWALA" width={200} height={72} className="h-16 w-auto" priority />
+              <Image src="/images/image2.png" alt="ROBOWALA" width={200} height={72} className="h-16 w-auto" priority />
             </Link>
             <p className="mb-4 text-sm text-white/70">
               Your Ideas, Our Parts. India's leading e-commerce platform for IoT components and robotics.
