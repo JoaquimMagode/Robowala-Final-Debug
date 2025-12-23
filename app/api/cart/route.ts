@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "@/lib/db"
 import { requireAuth, getUserId } from "@/lib/auth-helpers"
 import { auth } from "@/lib/auth"
 import { z } from "zod"
-
-const prisma = new PrismaClient()
 
 export async function GET(request: NextRequest) {
   try {
@@ -65,8 +63,6 @@ export async function GET(request: NextRequest) {
       },
       { status: 500 }
     )
-  } finally {
-    await prisma.$disconnect()
   }
 }
 
@@ -228,8 +224,6 @@ export async function POST(request: NextRequest) {
       },
       { status: 500 }
     )
-  } finally {
-    await prisma.$disconnect()
   }
 }
 
@@ -261,7 +255,5 @@ export async function DELETE(request: NextRequest) {
       },
       { status: 500 }
     )
-  } finally {
-    await prisma.$disconnect()
   }
 }
