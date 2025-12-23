@@ -45,10 +45,14 @@ function ProductCard({ product }: { product: any }) {
       <Link href={`/products/${product.slug}`} className="block p-3">
         <div className="relative aspect-square overflow-hidden rounded bg-secondary">
           <Image
-            src={product.image || "/placeholder.svg"}
+            src={product.image || "/placeholder.jpg"}
             alt={product.name}
             fill
             className="object-contain p-2 transition-transform group-hover:scale-105"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement
+              target.src = "/placeholder.jpg"
+            }}
           />
         </div>
       </Link>
