@@ -23,6 +23,7 @@ export async function GET(
       )
     }
 
+<<<<<<< HEAD
     // Parse specifications safely
     let specifications = {}
     try {
@@ -43,6 +44,13 @@ export async function GET(
       ...product,
       image: imagePath || '/placeholder.jpg',
       specifications,
+=======
+    // Parse specifications and fix image path
+    const productWithParsedSpecs = {
+      ...product,
+      image: product.image?.startsWith('/') ? product.image : `/products/${product.image}`,
+      specifications: JSON.parse(product.specifications),
+>>>>>>> parent of 971306a (Fix product image paths and copy images to products folder)
     }
 
     return NextResponse.json(

@@ -50,19 +50,11 @@ export async function GET(request: NextRequest) {
     })
 
     // Parse specifications and fix image paths
-    const productsWithParsedSpecs = products.map((product) => {
-      let imagePath = product.image
-      if (imagePath && !imagePath.startsWith('http')) {
-        // Remove leading slash if present and add /products/ prefix
-        imagePath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath
-        imagePath = `/products/${imagePath}`
-      }
-      return {
-        ...product,
-        image: imagePath || '/placeholder.jpg',
-        specifications: JSON.parse(product.specifications),
-      }
-    })
+    const productsWithParsedSpecs = products.map((product) => ({
+      ...product,
+      image: product.image?.startsWith('/') ? product.image : `/products/${product.image}`,
+      specifications: JSON.parse(product.specifications),
+    }))
 
     // Calculate pagination metadata
     const totalPages = Math.ceil(total / limit)
