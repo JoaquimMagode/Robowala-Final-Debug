@@ -14,7 +14,7 @@ function ProductCard({ product }: { product: any }) {
     addItem(product, 1)
   }
 
-  const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+  const discount = product.originalPrice > 0 ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0
 
   return (
     <div className="group relative flex flex-col rounded-lg border border-border bg-card transition-all hover:shadow-md">
@@ -76,9 +76,12 @@ function ProductCard({ product }: { product: any }) {
   )
 }
 
+const PRODUCT_GRID_CLASSES = "grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
+
 export function FeaturedProducts() {
   const [products, setProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     async function fetchProducts() {
@@ -87,6 +90,7 @@ export function FeaturedProducts() {
         setProducts(data.products)
       } catch (error) {
         console.error("Failed to fetch products:", error)
+        setError("Failed to load products. Please try again later.")
       } finally {
         setLoading(false)
       }
@@ -111,13 +115,28 @@ export function FeaturedProducts() {
         </div>
 
         {loading ? (
-          <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          <div className={PRODUCT_GRID_CLASSES}>
             {[...Array(6)].map((_, i) => (
               <div key={i} className="h-64 animate-pulse rounded-lg bg-secondary" />
             ))}
           </div>
+        ) : error ? (
+          <div className="text-center py-8">
+            <p className="text-red-500 mb-4">{error}</p>
+            <button 
+              onClick={() => {
+                setError(null)
+                setLoading(true)
+                // Trigger refetch
+                window.location.reload()
+              }}
+              className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
+            >
+              Try Again
+            </button>
+          </div>
         ) : (
-          <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          <div className={PRODUCT_GRID_CLASSES}>
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

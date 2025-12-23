@@ -18,7 +18,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const { addProduct, isInComparison } = useComparisonStore()
   const { toast } = useToast()
   const [isAddingToCart, setIsAddingToCart] = useState(false)
-  const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+  const discount = product.originalPrice > 0 ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0
   const inComparison = isInComparison(product.id)
 
   const handleAddToCart = async () => {

@@ -117,7 +117,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <Image src="/images/image.png" alt="ROBOWALA" width={200} height={72} className="h-18 w-auto" priority />
+            <Image src="/images/image.png" alt="ROBOWALA" width={200} height={72} className="h-16 w-auto" priority />
           </Link>
 
           <div className="hidden flex-1 max-w-xl mx-8 md:block">

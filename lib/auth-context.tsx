@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState, useMemo } from "react"
 import { useSession } from "next-auth/react"
 import { useCartStore } from "./cart-store"
 
@@ -22,10 +22,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const fetchCart = useCartStore((state) => state.fetchCart)
   const [isInitialized, setIsInitialized] = useState(false)
 
+  const isAuth = status === "authenticated" && !!session?.user
+
   useEffect(() => {
     if (status === "loading") return
 
-    const isAuth = status === "authenticated" && !!session?.user
     setAuthenticated(isAuth)
 
     if (isAuth && !isInitialized) {
@@ -34,16 +35,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } else if (!isAuth && isInitialized) {
       setIsInitialized(false)
     }
-  }, [status, session, setAuthenticated, fetchCart, isInitialized])
+  }, [status, session, setAuthenticated, fetchCart, isInitialized, isAuth])
+
+  const value = useMemo(() => ({
+    isAuthenticated: isAuth,
+    isLoading: status === "loading",
+    user: session?.user || null,
+  }), [isAuth, status, session?.user])
 
   return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated: status === "authenticated" && !!session?.user,
-        isLoading: status === "loading",
-        user: session?.user || null,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   )
