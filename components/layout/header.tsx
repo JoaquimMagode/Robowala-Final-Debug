@@ -86,13 +86,6 @@ export function Header() {
   const itemCount = mounted ? getItemCount() : 0
   const totalPrice = mounted ? total : 0
 
-  // Debug logging
-  useEffect(() => {
-    if (mounted) {
-      console.log('Header cart state:', { itemCount, totalPrice, items: items.length })
-    }
-  }, [mounted, itemCount, totalPrice, items])
-
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/" })
   }

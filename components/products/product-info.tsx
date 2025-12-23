@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { ShoppingCart, Heart, Share2, Truck, Shield, RefreshCw, Star, Minus, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -18,11 +18,14 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const [quantity, setQuantity] = useState(1)
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [isAddingToCart, setIsAddingToCart] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const addItem = useCartStore((state) => state.addItem)
   const { isAuthenticated } = useAuth()
   const { toast } = useToast()
 
-  console.log('ProductInfo rendering:', { productName: product.name, productId: product.id })
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
 
@@ -30,7 +33,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const decrementQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
 
   const handleAddToCart = async () => {
-    console.log('Add to cart clicked for product:', product.id)
+    if (!mounted) return
     
     if (!product.inStock) {
       toast({
@@ -43,9 +46,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
     setIsAddingToCart(true)
     try {
-      console.log('Adding to cart:', { product: product.id, quantity })
       await addItem(product, quantity)
-      console.log('Successfully added to cart')
       toast({
         title: "Added to Cart",
         description: `${product.name} has been added to your cart.`,
@@ -64,6 +65,8 @@ export function ProductInfo({ product }: ProductInfoProps) {
   }
 
   const handleBuyNow = async () => {
+    if (!mounted) return
+    
     if (!product.inStock) {
       toast({
         title: "Out of Stock",
@@ -248,7 +251,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
       <div className="space-y-3 rounded-lg border border-border bg-card p-4">
         <h3 className="font-semibold text-foreground">Key Specifications</h3>
         <div className="grid gap-2">
-          {Object.entries(product.specifications)
+          {mounted && product.specifications && Object.entries(product.specifications)
             .slice(0, 4)
             .map(([key, value]) => (
               <div key={key} className="flex items-center justify-between text-sm">

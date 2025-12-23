@@ -17,8 +17,6 @@ export function ProductGallery({ product }: ProductGalleryProps) {
   // Use product image or fallback
   const images = [product.image || "/placeholder.svg"]
 
-  console.log('Product gallery rendering:', { productName: product.name, image: product.image })
-
   const nextImage = () => {
     setSelectedImage((prev) => (prev + 1) % images.length)
   }
