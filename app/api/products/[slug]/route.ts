@@ -23,9 +23,10 @@ export async function GET(
       )
     }
 
-    // Parse specifications from JSON string
+    // Parse specifications and fix image path
     const productWithParsedSpecs = {
       ...product,
+      image: product.image?.startsWith('/') ? product.image : `/products/${product.image}`,
       specifications: JSON.parse(product.specifications),
     }
 

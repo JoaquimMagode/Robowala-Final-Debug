@@ -71,15 +71,23 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { getItemCount, total } = useCartStore()
+  const { getItemCount, total, items } = useCartStore()
   const { isAuthenticated, user, isLoading } = useAuth()
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // Force re-render when cart items change
   const itemCount = mounted ? getItemCount() : 0
   const totalPrice = mounted ? total : 0
+
+  // Debug logging
+  useEffect(() => {
+    if (mounted) {
+      console.log('Header cart state:', { itemCount, totalPrice, items: items.length })
+    }
+  }, [mounted, itemCount, totalPrice, items])
 
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/" })

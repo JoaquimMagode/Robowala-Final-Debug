@@ -78,6 +78,8 @@ export const useCartStore = create<CartStore>()(
       },
 
       addItem: async (product, quantity = 1) => {
+        console.log('Adding item to cart:', { product: product.name, quantity, isAuthenticated: get().isAuthenticated })
+        
         const calculateTotals = (items: CartItem[]) => {
           const subtotal = items.reduce((total, item) => total + item.product.originalPrice * item.quantity, 0)
           const discount = items.reduce(
@@ -89,6 +91,7 @@ export const useCartStore = create<CartStore>()(
         }
 
         if (!get().isAuthenticated) {
+          console.log('Adding to local cart (not authenticated)')
           // For non-authenticated users, store in local state
           set((state) => {
             const existingItem = state.items.find((item) => item.product.id === product.id)
@@ -102,10 +105,12 @@ export const useCartStore = create<CartStore>()(
               newItems = [...state.items, { id: `local-${Date.now()}`, product, quantity }]
             }
 
-            return {
+            const newState = {
               items: newItems,
               ...calculateTotals(newItems),
             }
+            console.log('New cart state:', newState)
+            return newState
           })
           return
         }
@@ -216,6 +221,9 @@ export const useCartStore = create<CartStore>()(
         total: state.isAuthenticated ? 0 : state.total,
         isAuthenticated: state.isAuthenticated,
       }),
+      onRehydrateStorage: () => (state) => {
+        console.log('Cart rehydrated:', state)
+      },
     },
   ),
 )
