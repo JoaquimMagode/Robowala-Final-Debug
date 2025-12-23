@@ -10,29 +10,19 @@ import { productsAPI } from "@/lib/api-client"
 function ProductCard({ product }: { product: any }) {
   const addItem = useCartStore((state) => state.addItem)
 
-  const handleAddToCart = async () => {
-    try {
-      await addItem(product, 1)
-    } catch (error) {
-      console.error('Failed to add to cart:', error)
-      // Fallback: add basic product info to cart without API validation
-      const basicProduct = {
-        id: product.id || product.slug,
-        slug: product.slug,
-        name: product.name,
-        price: product.price,
-        originalPrice: product.originalPrice,
-        image: product.image || '/placeholder.jpg',
-        category: product.category,
-        inStock: true
-      }
-      // Try to add the basic product directly
-      try {
-        await addItem(basicProduct, 1)
-      } catch (fallbackError) {
-        console.error('Fallback add to cart also failed:', fallbackError)
-      }
+  const handleAddToCart = () => {
+    // Use local storage directly instead of API
+    const cartItems = JSON.parse(localStorage.getItem('cart') || '[]')
+    const existingItem = cartItems.find((item: any) => item.id === product.id)
+    
+    if (existingItem) {
+      existingItem.quantity += 1
+    } else {
+      cartItems.push({ ...product, quantity: 1 })
     }
+    
+    localStorage.setItem('cart', JSON.stringify(cartItems))
+    console.log('Added to cart:', product.name)
   }
 
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
