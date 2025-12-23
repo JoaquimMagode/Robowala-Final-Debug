@@ -1,56 +1,41 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { notFound, useParams } from "next/navigation"
+import { useParams } from "next/navigation"
 import Link from "next/link"
-import { ChevronRight } from "lucide-react"
+import Image from "next/image"
+import { ChevronRight, ShoppingCart, Star } from "lucide-react"
 import { productsAPI } from "@/lib/api-client"
-import { ProductGallery } from "@/components/products/product-gallery"
-import { ProductInfo } from "@/components/products/product-info"
-import { ProductTabs } from "@/components/products/product-tabs"
-import { RelatedProducts } from "@/components/products/related-products"
-import { useRecentlyViewedStore } from "@/lib/recently-viewed-store"
-import type { Product } from "@/lib/products"
+import { useCartStore } from "@/lib/cart-store"
 
 export default function ProductPage() {
   const params = useParams()
   const slug = params.slug as string
-  const addToRecentlyViewed = useRecentlyViewedStore((state) => state.addProduct)
+  const addItem = useCartStore((state) => state.addItem)
 
-  const [product, setProduct] = useState<Product | null>(null)
-  const [relatedProducts, setRelatedProducts] = useState<Product[]>([])
+  const [product, setProduct] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [notFoundError, setNotFoundError] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const fetchProduct = async () => {
-      setIsLoading(true)
       try {
         const data = await productsAPI.getBySlug(slug)
         setProduct(data.product)
-
-        // Add to recently viewed
-        addToRecentlyViewed(data.product)
-
-        // Fetch related products from same category
-        const related = await productsAPI.list({ category: data.product.categorySlug, limit: 5 })
-        setRelatedProducts(related.products.filter((p: Product) => p.id !== data.product.id).slice(0, 4))
       } catch (error) {
         console.error("Failed to fetch product:", error)
-        setNotFoundError(true)
+        setError(true)
       } finally {
         setIsLoading(false)
       }
     }
 
-    fetchProduct()
-  }, [slug, addToRecentlyViewed])
+    if (slug) {
+      fetchProduct()
+    }
+  }, [slug])
 
-  if (notFoundError) {
-    notFound()
-  }
-
-  if (isLoading || !product) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-8">
@@ -70,61 +55,97 @@ export default function ProductPage() {
     )
   }
 
+  if (error || !product) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
+          <p className="text-muted-foreground mb-4">The product you're looking for doesn't exist.</p>
+          <Link href="/products" className="text-primary hover:underline">
+            Back to Products
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  const handleAddToCart = () => {
+    addItem(product, 1)
+  }
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Breadcrumbs */}
-      <div className="border-b border-border bg-gradient-to-r from-primary/5 via-secondary to-primary/5">
+      <div className="border-b border-border bg-secondary">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-muted-foreground transition-colors hover:text-primary font-medium">
+            <Link href="/" className="text-muted-foreground hover:text-primary">
               Home
             </Link>
             <ChevronRight className="h-4 w-4 text-muted-foreground" />
-            <Link href="/products" className="text-muted-foreground transition-colors hover:text-primary font-medium">
+            <Link href="/products" className="text-muted-foreground hover:text-primary">
               Products
             </Link>
-            <ChevronRight className="h-4 w-4 text-muted-foreground" />
-            <Link
-              href={`/products?category=${product.categorySlug}`}
-              className="text-muted-foreground transition-colors hover:text-primary font-medium"
-            >
-              {product.category}
-            </Link>
-            {product.subcategory && (
-              <>
-                <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                <Link
-                  href={`/products?category=${product.categorySlug}&subcategory=${product.subcategorySlug}`}
-                  className="text-muted-foreground transition-colors hover:text-primary font-medium"
-                >
-                  {product.subcategory}
-                </Link>
-              </>
-            )}
             <ChevronRight className="h-4 w-4 text-muted-foreground" />
             <span className="font-semibold text-foreground">{product.name}</span>
           </nav>
         </div>
       </div>
 
-      {/* Product Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="grid gap-8 lg:grid-cols-2">
-          <ProductGallery product={product} />
-          <ProductInfo product={product} />
-        </div>
-
-        {/* Product Tabs */}
-        <div className="mt-12">
-          <ProductTabs product={product} />
-        </div>
-
-        {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <div className="mt-16">
-            <RelatedProducts products={relatedProducts} />
+          <div className="aspect-square overflow-hidden rounded-lg bg-secondary">
+            <Image
+              src={product.image || "/placeholder.jpg"}
+              alt={product.name}
+              width={600}
+              height={600}
+              className="object-contain w-full h-full p-4"
+              onError={(e) => {
+                e.currentTarget.src = "/placeholder.jpg"
+              }}
+            />
           </div>
-        )}
+
+          <div className="space-y-6">
+            <div>
+              <h1 className="text-3xl font-bold text-foreground mb-2">{product.name}</h1>
+              <p className="text-muted-foreground">{product.category}</p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <div className="flex items-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`h-4 w-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "fill-muted text-muted"}`}
+                  />
+                ))}
+              </div>
+              <span className="text-sm text-muted-foreground">({product.reviews} reviews)</span>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center gap-4">
+                <span className="text-3xl font-bold text-foreground">₹{product.price}</span>
+                <span className="text-xl text-muted-foreground line-through">₹{product.originalPrice}</span>
+              </div>
+              <p className="text-sm text-green-600">In Stock</p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2">Description</h3>
+              <p className="text-muted-foreground">{product.description}</p>
+            </div>
+
+            <button
+              onClick={handleAddToCart}
+              className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg font-medium hover:bg-primary/90 flex items-center justify-center gap-2"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )
