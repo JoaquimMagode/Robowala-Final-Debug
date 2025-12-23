@@ -146,7 +146,7 @@ export default function ProductPage() {
                 <span className="text-3xl font-bold text-foreground">₹{product.price}</span>
                 <span className="text-xl text-muted-foreground line-through">₹{product.originalPrice}</span>
               </div>
-              <p className="text-sm text-green-600">In Stock</p>
+              <p className="text-sm text-green-600">{product.inStock ? "In Stock" : "Out of Stock"}</p>
             </div>
 
             <div>

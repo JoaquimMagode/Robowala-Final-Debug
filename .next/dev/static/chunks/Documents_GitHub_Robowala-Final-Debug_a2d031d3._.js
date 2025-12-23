@@ -286,7 +286,7 @@ function ProductCard({ product }) {
     const { addProduct, isInComparison } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$comparison$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useComparisonStore"])();
     const { toast } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"])();
     const [isAddingToCart, setIsAddingToCart] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const discount = Math.round((product.originalPrice - product.price) / product.originalPrice * 100);
+    const discount = product.originalPrice > 0 ? Math.round((product.originalPrice - product.price) / product.originalPrice * 100) : 0;
     const inComparison = isInComparison(product.id);
     const handleAddToCart = async ()=>{
         if (!product.inStock) {
@@ -382,10 +382,13 @@ function ProductCard({ product }) {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "relative aspect-square overflow-hidden rounded bg-secondary",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        src: product.image || "/placeholder.svg",
+                        src: product.image || "/placeholder.jpg",
                         alt: product.name,
                         fill: true,
-                        className: "object-contain p-2 transition-transform group-hover:scale-105"
+                        className: "object-contain p-2 transition-transform group-hover:scale-105",
+                        onError: (e)=>{
+                            e.currentTarget.src = "/placeholder.jpg";
+                        }
                     }, void 0, false, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
                         lineNumber: 97,
@@ -412,7 +415,7 @@ function ProductCard({ product }) {
                                 children: product.category
                             }, void 0, false, {
                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                lineNumber: 110,
+                                lineNumber: 113,
                                 columnNumber: 11
                             }, this),
                             product.brand && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -430,25 +433,25 @@ function ProductCard({ product }) {
                                             d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                            lineNumber: 116,
+                                            lineNumber: 119,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                        lineNumber: 115,
+                                        lineNumber: 118,
                                         columnNumber: 15
                                     }, this),
                                     product.brand
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                lineNumber: 114,
+                                lineNumber: 117,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                        lineNumber: 109,
+                        lineNumber: 112,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -458,12 +461,12 @@ function ProductCard({ product }) {
                             children: product.name
                         }, void 0, false, {
                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                            lineNumber: 125,
+                            lineNumber: 128,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                        lineNumber: 124,
+                        lineNumber: 127,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -475,7 +478,7 @@ function ProductCard({ product }) {
                                     className: `h-3 w-3 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "fill-muted text-muted"}`
                                 }, i, false, {
                                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                    lineNumber: 133,
+                                    lineNumber: 136,
                                     columnNumber: 13
                                 }, this)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -487,13 +490,13 @@ function ProductCard({ product }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                lineNumber: 139,
+                                lineNumber: 142,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                        lineNumber: 131,
+                        lineNumber: 134,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -511,7 +514,7 @@ function ProductCard({ product }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                            lineNumber: 146,
+                                            lineNumber: 149,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -522,18 +525,18 @@ function ProductCard({ product }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                            lineNumber: 147,
+                                            lineNumber: 150,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                    lineNumber: 145,
+                                    lineNumber: 148,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                lineNumber: 144,
+                                lineNumber: 147,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -548,14 +551,14 @@ function ProductCard({ product }) {
                                                 className: "h-3 w-3"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                                lineNumber: 156,
+                                                lineNumber: 159,
                                                 columnNumber: 15
                                             }, this),
                                             isAddingToCart ? "Adding..." : "Add"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                        lineNumber: 151,
+                                        lineNumber: 154,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -566,30 +569,30 @@ function ProductCard({ product }) {
                                             className: "h-3 w-3"
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                            lineNumber: 167,
+                                            lineNumber: 170,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                        lineNumber: 159,
+                                        lineNumber: 162,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                                lineNumber: 150,
+                                lineNumber: 153,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                        lineNumber: 143,
+                        lineNumber: 146,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/products/product-card.tsx",
-                lineNumber: 107,
+                lineNumber: 110,
                 columnNumber: 7
             }, this)
         ]

@@ -23,9 +23,17 @@ export async function GET(
       )
     }
 
-    // Parse specifications from JSON string
+    // Parse specifications and fix image path
+    let imagePath = product.image
+    if (imagePath && !imagePath.startsWith('http')) {
+      // Remove leading slash if present and add /products/ prefix
+      imagePath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath
+      imagePath = `/products/${imagePath}`
+    }
+    
     const productWithParsedSpecs = {
       ...product,
+      image: imagePath || '/placeholder.jpg',
       specifications: JSON.parse(product.specifications),
     }
 

@@ -270,115 +270,15 @@ var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.sign
 ;
 ;
 ;
-const staticFeaturedProducts = [
-    {
-        id: "esp32-devkit",
-        slug: "esp32-devkit",
-        sku: "SKU: 1164989",
-        name: "ESP32-WROOM-32 DevKit V1",
-        price: 499,
-        originalPrice: 699,
-        rating: 4.8,
-        reviews: 234,
-        image: "/esp32-development-board-wifi-bluetooth-microcontro.jpg",
-        category: "Development Boards",
-        categorySlug: "development-boards",
-        inStock: true
-    },
-    {
-        id: "arduino-uno-r4",
-        slug: "arduino-uno-r4",
-        sku: "SKU: 1164990",
-        name: "Arduino UNO R4 WiFi Development Board",
-        price: 2499,
-        originalPrice: 2999,
-        rating: 4.9,
-        reviews: 156,
-        image: "/arduino-uno-r4-wifi-development-board-blue.jpg",
-        category: "Development Boards",
-        categorySlug: "development-boards",
-        inStock: true
-    },
-    {
-        id: "raspberry-pi-5",
-        slug: "raspberry-pi-5",
-        sku: "SKU: 1281445",
-        name: "Raspberry Pi 5 8GB Single Board Computer",
-        price: 7499,
-        originalPrice: 8499,
-        rating: 4.9,
-        reviews: 89,
-        image: "/raspberry-pi-5-single-board-computer.jpg",
-        category: "Single Board Computers",
-        categorySlug: "development-boards",
-        inStock: true
-    },
-    {
-        id: "sensor-kit-37",
-        slug: "sensor-kit-37",
-        sku: "SKU: 1713507",
-        name: "37-in-1 Sensor Kit for Arduino",
-        price: 1299,
-        originalPrice: 1799,
-        rating: 4.7,
-        reviews: 312,
-        image: "/arduino-sensor-kit-37-pieces-various-sensors-modul.jpg",
-        category: "Sensors",
-        categorySlug: "sensors",
-        inStock: true
-    },
-    {
-        id: "dht22-sensor",
-        slug: "dht22",
-        sku: "SKU: 1713572",
-        name: "DHT22 Digital Temperature Humidity Sensor",
-        price: 299,
-        originalPrice: 399,
-        rating: 4.6,
-        reviews: 445,
-        image: "/dht22-temperature-humidity-sensor-white.jpg",
-        category: "Sensors",
-        categorySlug: "sensors",
-        inStock: true
-    },
-    {
-        id: "l298n-driver",
-        slug: "l298n",
-        sku: "SKU: 1713577",
-        name: "L298N Motor Driver Module Dual H-Bridge",
-        price: 149,
-        originalPrice: 199,
-        rating: 4.5,
-        reviews: 267,
-        image: "/l298n-motor-driver-module-red-pcb.jpg",
-        category: "Motors",
-        categorySlug: "motors",
-        inStock: true
-    }
-];
 function ProductCard({ product }) {
     _s();
     const addItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$lib$2f$cart$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCartStore"])({
         "ProductCard.useCartStore[addItem]": (state)=>state.addItem
     }["ProductCard.useCartStore[addItem]"]);
     const handleAddToCart = ()=>{
-        addItem({
-            id: product.id,
-            slug: product.slug,
-            name: product.name,
-            price: product.price,
-            originalPrice: product.originalPrice,
-            image: product.image,
-            category: product.category,
-            categorySlug: product.categorySlug,
-            rating: product.rating,
-            reviews: product.reviews,
-            inStock: product.inStock,
-            description: "",
-            specifications: []
-        }, 1);
+        addItem(product, 1);
     };
-    const discount = Math.round((product.originalPrice - product.price) / product.originalPrice * 100);
+    const discount = product.originalPrice > 0 ? Math.round((product.originalPrice - product.price) / product.originalPrice * 100) : 0;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "group relative flex flex-col rounded-lg border border-border bg-card transition-all hover:shadow-md",
         children: [
@@ -389,12 +289,12 @@ function ProductCard({ product }) {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                    lineNumber: 130,
+                    lineNumber: 25,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                lineNumber: 126,
+                lineNumber: 21,
                 columnNumber: 7
             }, this),
             discount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -405,7 +305,7 @@ function ProductCard({ product }) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                lineNumber: 135,
+                lineNumber: 29,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -420,17 +320,17 @@ function ProductCard({ product }) {
                         className: "object-contain p-2 transition-transform group-hover:scale-105"
                     }, void 0, false, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                        lineNumber: 143,
+                        lineNumber: 36,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                    lineNumber: 142,
+                    lineNumber: 35,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                lineNumber: 141,
+                lineNumber: 34,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -441,7 +341,7 @@ function ProductCard({ product }) {
                         children: product.category
                     }, void 0, false, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                        lineNumber: 155,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -451,20 +351,12 @@ function ProductCard({ product }) {
                             children: product.name
                         }, void 0, false, {
                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                            lineNumber: 159,
+                            lineNumber: 48,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                        lineNumber: 158,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "mb-1 text-[10px] text-muted-foreground",
-                        children: product.sku
-                    }, void 0, false, {
-                        fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                        lineNumber: 163,
+                        lineNumber: 47,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -476,7 +368,7 @@ function ProductCard({ product }) {
                                     className: `h-3 w-3 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "fill-muted text-muted"}`
                                 }, i, false, {
                                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                                    lineNumber: 168,
+                                    lineNumber: 53,
                                     columnNumber: 13
                                 }, this)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -488,13 +380,13 @@ function ProductCard({ product }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                                lineNumber: 174,
+                                lineNumber: 59,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                        lineNumber: 166,
+                        lineNumber: 51,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -510,7 +402,7 @@ function ProductCard({ product }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                                        lineNumber: 180,
+                                        lineNumber: 64,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -521,13 +413,13 @@ function ProductCard({ product }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                                        lineNumber: 181,
+                                        lineNumber: 65,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                                lineNumber: 179,
+                                lineNumber: 63,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -537,30 +429,30 @@ function ProductCard({ product }) {
                                     className: "h-4 w-4"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                                    lineNumber: 187,
+                                    lineNumber: 71,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                                lineNumber: 183,
+                                lineNumber: 67,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                        lineNumber: 178,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                lineNumber: 153,
+                lineNumber: 45,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-        lineNumber: 124,
+        lineNumber: 20,
         columnNumber: 5
     }, this);
 }
@@ -570,10 +462,12 @@ _s(ProductCard, "ykAVFv+ip+OIiKbJEEcimG5GtEo=", false, function() {
     ];
 });
 _c = ProductCard;
+const PRODUCT_GRID_CLASSES = "grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6";
 function FeaturedProducts() {
     _s1();
-    const [products, setProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(staticFeaturedProducts);
+    const [products, setProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "FeaturedProducts.useEffect": ()=>{
             async function fetchProducts() {
@@ -584,7 +478,7 @@ function FeaturedProducts() {
                     setProducts(data.products);
                 } catch (error) {
                     console.error("Failed to fetch products:", error);
-                // Fallback to static data on error
+                    setError("Failed to load products. Please try again later.");
                 } finally{
                     setLoading(false);
                 }
@@ -607,20 +501,20 @@ function FeaturedProducts() {
                                     children: "Featured Products"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                                    lineNumber: 220,
+                                    lineNumber: 106,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "mt-1 h-1 w-16 bg-[#ff6a00]"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                                    lineNumber: 221,
+                                    lineNumber: 107,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                            lineNumber: 219,
+                            lineNumber: 105,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -629,57 +523,87 @@ function FeaturedProducts() {
                             children: "View All"
                         }, void 0, false, {
                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                            lineNumber: 223,
+                            lineNumber: 109,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                    lineNumber: 218,
+                    lineNumber: 104,
                     columnNumber: 9
                 }, this),
                 loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6",
+                    className: PRODUCT_GRID_CLASSES,
                     children: [
                         ...Array(6)
                     ].map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "h-64 animate-pulse rounded-lg bg-secondary"
                         }, i, false, {
                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                            lineNumber: 235,
+                            lineNumber: 120,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                    lineNumber: 233,
+                    lineNumber: 118,
+                    columnNumber: 11
+                }, this) : error ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "text-center py-8",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-red-500 mb-4",
+                            children: error
+                        }, void 0, false, {
+                            fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
+                            lineNumber: 125,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            onClick: ()=>{
+                                setError(null);
+                                setLoading(true);
+                                // Trigger refetch
+                                window.location.reload();
+                            },
+                            className: "px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90",
+                            children: "Try Again"
+                        }, void 0, false, {
+                            fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
+                            lineNumber: 126,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
+                    lineNumber: 124,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6",
+                    className: PRODUCT_GRID_CLASSES,
                     children: products.map((product)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$GitHub$2f$Robowala$2d$Final$2d$Debug$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ProductCard, {
                             product: product
                         }, product.id, false, {
                             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                            lineNumber: 241,
+                            lineNumber: 141,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-                    lineNumber: 239,
+                    lineNumber: 139,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-            lineNumber: 216,
+            lineNumber: 103,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Documents/GitHub/Robowala-Final-Debug/components/home/featured-products.tsx",
-        lineNumber: 215,
+        lineNumber: 102,
         columnNumber: 5
     }, this);
 }
-_s1(FeaturedProducts, "9TW6FIpK7StkZY4Y2aUcIhfbsJQ=");
+_s1(FeaturedProducts, "3+N/VFIgZOBgubN9oS5aTzm2qqY=");
 _c1 = FeaturedProducts;
 var _c, _c1;
 __turbopack_context__.k.register(_c, "ProductCard");

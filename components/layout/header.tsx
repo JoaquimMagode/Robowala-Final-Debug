@@ -71,15 +71,23 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { getItemCount, total } = useCartStore()
+  const { getItemCount, total, items } = useCartStore()
   const { isAuthenticated, user, isLoading } = useAuth()
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // Force re-render when cart items change
   const itemCount = mounted ? getItemCount() : 0
   const totalPrice = mounted ? total : 0
+
+  // Debug logging
+  useEffect(() => {
+    if (mounted) {
+      console.log('Header cart state:', { itemCount, totalPrice, items: items.length })
+    }
+  }, [mounted, itemCount, totalPrice, items])
 
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/" })
@@ -117,7 +125,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <Image src="/images/image.png" alt="ROBOWALA" width={200} height={72} className="h-18 w-auto" priority />
+            <Image src="/images/image.png" alt="ROBOWALA" width={200} height={72} className="h-16 w-auto" priority />
           </Link>
 
           <div className="hidden flex-1 max-w-xl mx-8 md:block">

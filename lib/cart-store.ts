@@ -41,10 +41,10 @@ export const useCartStore = create<CartStore>()(
       isLoading: false,
       isAuthenticated: false,
 
-      setAuthenticated: (isAuth: boolean) => {
+      setAuthenticated: async (isAuth: boolean) => {
         set({ isAuthenticated: isAuth })
         if (isAuth) {
-          get().fetchCart()
+          await get().fetchCart()
         } else {
           set({ items: [], subtotal: 0, discount: 0, total: 0 })
         }
@@ -69,7 +69,7 @@ export const useCartStore = create<CartStore>()(
         } catch (error) {
           console.error("Failed to fetch cart:", error)
           // If unauthorized, clear cart
-          if ((error as any).status === 401) {
+          if (error && typeof error === 'object' && 'status' in error && (error as { status: number }).status === 401) {
             set({ items: [], subtotal: 0, discount: 0, total: 0, isAuthenticated: false })
           }
         } finally {
@@ -78,36 +78,39 @@ export const useCartStore = create<CartStore>()(
       },
 
       addItem: async (product, quantity = 1) => {
+        console.log('Adding item to cart:', { product: product.name, quantity, isAuthenticated: get().isAuthenticated })
+        
+        const calculateTotals = (items: CartItem[]) => {
+          const subtotal = items.reduce((total, item) => total + item.product.originalPrice * item.quantity, 0)
+          const discount = items.reduce(
+            (total, item) => total + (item.product.originalPrice - item.product.price) * item.quantity,
+            0,
+          )
+          const total = items.reduce((total, item) => total + item.product.price * item.quantity, 0)
+          return { subtotal, discount, total }
+        }
+
         if (!get().isAuthenticated) {
+          console.log('Adding to local cart (not authenticated)')
           // For non-authenticated users, store in local state
           set((state) => {
             const existingItem = state.items.find((item) => item.product.id === product.id)
 
+            let newItems: CartItem[]
             if (existingItem) {
-              const newItems = state.items.map((item) =>
+              newItems = state.items.map((item) =>
                 item.product.id === product.id ? { ...item, quantity: item.quantity + quantity } : item,
               )
-              return {
-                items: newItems,
-                subtotal: newItems.reduce((total, item) => total + item.product.originalPrice * item.quantity, 0),
-                discount: newItems.reduce(
-                  (total, item) => total + (item.product.originalPrice - item.product.price) * item.quantity,
-                  0,
-                ),
-                total: newItems.reduce((total, item) => total + item.product.price * item.quantity, 0),
-              }
+            } else {
+              newItems = [...state.items, { id: `local-${Date.now()}`, product, quantity }]
             }
 
-            const newItems = [...state.items, { id: `local-${Date.now()}`, product, quantity }]
-            return {
+            const newState = {
               items: newItems,
-              subtotal: newItems.reduce((total, item) => total + item.product.originalPrice * item.quantity, 0),
-              discount: newItems.reduce(
-                (total, item) => total + (item.product.originalPrice - item.product.price) * item.quantity,
-                0,
-              ),
-              total: newItems.reduce((total, item) => total + item.product.price * item.quantity, 0),
+              ...calculateTotals(newItems),
             }
+            console.log('New cart state:', newState)
+            return newState
           })
           return
         }
@@ -218,6 +221,9 @@ export const useCartStore = create<CartStore>()(
         total: state.isAuthenticated ? 0 : state.total,
         isAuthenticated: state.isAuthenticated,
       }),
+      onRehydrateStorage: () => (state) => {
+        console.log('Cart rehydrated:', state)
+      },
     },
   ),
 )
