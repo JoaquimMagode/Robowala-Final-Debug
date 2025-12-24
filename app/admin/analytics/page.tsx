@@ -33,43 +33,30 @@ import {
   MousePointer
 } from "lucide-react"
 
-const salesData = [
-  { month: "Jan", sales: 45000, orders: 120 },
-  { month: "Feb", sales: 52000, orders: 145 },
-  { month: "Mar", sales: 48000, orders: 135 },
-  { month: "Apr", sales: 61000, orders: 180 },
-  { month: "May", sales: 55000, orders: 165 },
-  { month: "Jun", sales: 67000, orders: 200 },
-]
-
-const categoryData = [
-  { name: "Development Boards", value: 35, color: "#ff6a00" },
-  { name: "Sensors", value: 25, color: "#0066cc" },
-  { name: "Motors & Drivers", value: 20, color: "#00cc66" },
-  { name: "Displays", value: 12, color: "#cc6600" },
-  { name: "Others", value: 8, color: "#6600cc" },
-]
-
-const topProducts = [
-  { name: "Arduino Uno R4 WiFi", sales: 245, revenue: 612750 },
-  { name: "Raspberry Pi 5", sales: 189, revenue: 567000 },
-  { name: "ESP32 Development Board", sales: 156, revenue: 234000 },
-  { name: "HC-SR04 Ultrasonic Sensor", sales: 134, revenue: 67000 },
-  { name: "L298N Motor Driver", sales: 98, revenue: 49000 },
-]
-
-const recentOrders = [
-  { id: "ORD-001", customer: "John Doe", amount: 2499, status: "completed", date: "2024-12-23" },
-  { id: "ORD-002", customer: "Jane Smith", amount: 1899, status: "processing", date: "2024-12-23" },
-  { id: "ORD-003", customer: "Mike Johnson", amount: 3299, status: "shipped", date: "2024-12-22" },
-  { id: "ORD-004", customer: "Sarah Wilson", amount: 899, status: "pending", date: "2024-12-22" },
-  { id: "ORD-005", customer: "David Brown", amount: 4599, status: "completed", date: "2024-12-21" },
-]
+interface AnalyticsData {
+  keyMetrics: {
+    totalRevenue: { value: number; change: number; trend: string }
+    totalOrders: { value: number; change: number; trend: string }
+    totalCustomers: { value: number; change: number; trend: string }
+    productsSold: { value: number; change: number; trend: string }
+  }
+  customerMetrics: {
+    newCustomers: number
+    returnRate: number
+    avgOrderValue: number
+  }
+  salesData: Array<{ month: string; sales: number; orders: number }>
+  categoryData: Array<{ name: string; value: number; color: string }>
+  topProducts: Array<{ name: string; sales: number; revenue: number }>
+  recentOrders: Array<{ id: string; customer: string; amount: number; status: string; date: string }>
+}
 
 export default function AnalyticsPage() {
   const router = useRouter()
   const { isAuthenticated, user, isLoading } = useAuth()
+  const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null)
   const [isLoadingData, setIsLoadingData] = useState(true)
+  const [error, setError] = useState("")
 
   useEffect(() => {
     if (!isLoading && (!isAuthenticated || user?.role !== "ADMIN")) {
@@ -78,10 +65,25 @@ export default function AnalyticsPage() {
     }
 
     if (isAuthenticated && user?.role === "ADMIN") {
-      // Simulate loading
-      setTimeout(() => setIsLoadingData(false), 1000)
+      fetchAnalyticsData()
     }
   }, [isAuthenticated, user, isLoading, router])
+
+  const fetchAnalyticsData = async () => {
+    try {
+      const response = await fetch("/api/admin/analytics")
+      if (!response.ok) {
+        throw new Error("Failed to fetch analytics data")
+      }
+      const data = await response.json()
+      setAnalyticsData(data)
+    } catch (err: any) {
+      console.error("Analytics fetch error:", err)
+      setError(err.message || "Failed to load analytics data")
+    } finally {
+      setIsLoadingData(false)
+    }
+  }
 
   if (isLoading || isLoadingData) {
     return (
@@ -93,6 +95,26 @@ export default function AnalyticsPage() {
 
   if (!isAuthenticated || user?.role !== "ADMIN") {
     return null
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
+          <p className="text-sm text-destructive">{error}</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!analyticsData) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-muted/50 border border-border rounded-lg p-4">
+          <p className="text-sm text-muted-foreground">No analytics data available</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -110,11 +132,11 @@ export default function AnalyticsPage() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">₹3,28,000</div>
+            <div className="text-2xl font-bold">₹{analyticsData.keyMetrics.totalRevenue.value.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
-              <span className="text-green-600 flex items-center gap-1">
-                <TrendingUp className="h-3 w-3" />
-                +12.5%
+              <span className={`flex items-center gap-1 ${analyticsData.keyMetrics.totalRevenue.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                {analyticsData.keyMetrics.totalRevenue.trend === 'up' ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                {analyticsData.keyMetrics.totalRevenue.change >= 0 ? '+' : ''}{analyticsData.keyMetrics.totalRevenue.change.toFixed(1)}%
               </span>
               from last month
             </p>
@@ -127,11 +149,11 @@ export default function AnalyticsPage() {
             <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">945</div>
+            <div className="text-2xl font-bold">{analyticsData.keyMetrics.totalOrders.value.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
-              <span className="text-green-600 flex items-center gap-1">
-                <TrendingUp className="h-3 w-3" />
-                +8.2%
+              <span className={`flex items-center gap-1 ${analyticsData.keyMetrics.totalOrders.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                {analyticsData.keyMetrics.totalOrders.trend === 'up' ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                {analyticsData.keyMetrics.totalOrders.change >= 0 ? '+' : ''}{analyticsData.keyMetrics.totalOrders.change.toFixed(1)}%
               </span>
               from last month
             </p>
@@ -144,11 +166,11 @@ export default function AnalyticsPage() {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">1,234</div>
+            <div className="text-2xl font-bold">{analyticsData.keyMetrics.totalCustomers.value.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
-              <span className="text-green-600 flex items-center gap-1">
-                <TrendingUp className="h-3 w-3" />
-                +15.3%
+              <span className={`flex items-center gap-1 ${analyticsData.keyMetrics.totalCustomers.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                {analyticsData.keyMetrics.totalCustomers.trend === 'up' ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                {analyticsData.keyMetrics.totalCustomers.change >= 0 ? '+' : ''}{analyticsData.keyMetrics.totalCustomers.change.toFixed(1)}%
               </span>
               from last month
             </p>
@@ -161,13 +183,13 @@ export default function AnalyticsPage() {
             <Package className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2,847</div>
+            <div className="text-2xl font-bold">{analyticsData.keyMetrics.productsSold.value.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
-              <span className="text-red-600 flex items-center gap-1">
-                <TrendingDown className="h-3 w-3" />
-                -2.1%
+              <span className="text-green-600 flex items-center gap-1">
+                <TrendingUp className="h-3 w-3" />
+                Total units
               </span>
-              from last month
+              sold to date
             </p>
           </CardContent>
         </Card>
@@ -190,12 +212,12 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={salesData}>
+                  <LineChart data={analyticsData.salesData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis />
                     <Tooltip formatter={(value, name) => [
-                      name === "sales" ? `₹${value.toLocaleString()}` : value,
+                      name === "sales" ? `₹${Number(value).toLocaleString()}` : value,
                       name === "sales" ? "Sales" : "Orders"
                     ]} />
                     <Line type="monotone" dataKey="sales" stroke="#ff6a00" strokeWidth={2} />
@@ -213,14 +235,14 @@ export default function AnalyticsPage() {
                 <ResponsiveContainer width="100%" height={300}>
                   <PieChart>
                     <Pie
-                      data={categoryData}
+                      data={analyticsData.categoryData}
                       cx="50%"
                       cy="50%"
                       outerRadius={80}
                       dataKey="value"
                       label={({ name, value }) => `${name}: ${value}%`}
                     >
-                      {categoryData.map((entry, index) => (
+                      {analyticsData.categoryData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
@@ -238,7 +260,7 @@ export default function AnalyticsPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {recentOrders.map((order) => (
+                {analyticsData.recentOrders.map((order) => (
                   <div key={order.id} className="flex items-center justify-between border-b pb-2">
                     <div>
                       <p className="font-medium">{order.id}</p>
@@ -247,7 +269,7 @@ export default function AnalyticsPage() {
                     <div className="text-right">
                       <p className="font-medium">₹{order.amount.toLocaleString()}</p>
                       <Badge variant={
-                        order.status === "completed" ? "default" :
+                        order.status === "delivered" ? "default" :
                         order.status === "processing" ? "secondary" :
                         order.status === "shipped" ? "outline" : "destructive"
                       }>
@@ -269,11 +291,11 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={400}>
-                  <BarChart data={salesData}>
+                  <BarChart data={analyticsData.salesData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis />
-                    <Tooltip formatter={(value) => [`₹${value.toLocaleString()}`, "Sales"]} />
+                    <Tooltip formatter={(value) => [`₹${Number(value).toLocaleString()}`, "Sales"]} />
                     <Bar dataKey="sales" fill="#ff6a00" />
                   </BarChart>
                 </ResponsiveContainer>
@@ -286,7 +308,7 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={400}>
-                  <BarChart data={salesData}>
+                  <BarChart data={analyticsData.salesData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis />
@@ -306,7 +328,7 @@ export default function AnalyticsPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {topProducts.map((product, index) => (
+                {analyticsData.topProducts.map((product, index) => (
                   <div key={product.name} className="flex items-center justify-between border-b pb-2">
                     <div className="flex items-center gap-3">
                       <Badge variant="outline">#{index + 1}</Badge>
@@ -334,19 +356,19 @@ export default function AnalyticsPage() {
                 <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">89</div>
+                <div className="text-2xl font-bold">{analyticsData.customerMetrics.newCustomers}</div>
                 <p className="text-xs text-muted-foreground">This month</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Returning Customers</CardTitle>
+                <CardTitle className="text-sm font-medium">Return Rate</CardTitle>
                 <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">67%</div>
-                <p className="text-xs text-muted-foreground">Return rate</p>
+                <div className="text-2xl font-bold">{analyticsData.customerMetrics.returnRate}%</div>
+                <p className="text-xs text-muted-foreground">Customer retention</p>
               </CardContent>
             </Card>
 
@@ -356,49 +378,11 @@ export default function AnalyticsPage() {
                 <DollarSign className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">₹2,847</div>
-                <p className="text-xs text-muted-foreground">Per customer</p>
+                <div className="text-2xl font-bold">₹{analyticsData.customerMetrics.avgOrderValue.toLocaleString()}</div>
+                <p className="text-xs text-muted-foreground">Per order</p>
               </CardContent>
             </Card>
           </div>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Customer Activity</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Eye className="h-4 w-4 text-muted-foreground" />
-                    <span>Page Views</span>
-                  </div>
-                  <span className="font-medium">12,847</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <MousePointer className="h-4 w-4 text-muted-foreground" />
-                    <span>Unique Visitors</span>
-                  </div>
-                  <span className="font-medium">3,456</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <ShoppingCart className="h-4 w-4 text-muted-foreground" />
-                    <span>Conversion Rate</span>
-                  </div>
-                  <span className="font-medium">3.2%</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span>Avg. Session Duration</span>
-                  </div>
-                  <span className="font-medium">4m 32s</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </TabsContent>
       </Tabs>
     </div>

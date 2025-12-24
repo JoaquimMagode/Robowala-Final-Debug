@@ -1,41 +1,119 @@
-import { Package, ShoppingCart, Users, TrendingUp, ArrowUpRight, ArrowDownRight } from "lucide-react"
+"use client"
+
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { Package, ShoppingCart, Users, TrendingUp, ArrowUpRight, ArrowDownRight, Loader2 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { RecentOrders } from "@/components/admin/recent-orders"
 import { TopProducts } from "@/components/admin/top-products"
 import { SalesChart } from "@/components/admin/sales-chart"
+import { useAuth } from "@/lib/auth-context"
 
-const stats = [
-  {
-    title: "Total Revenue",
-    value: "₹4,52,890",
-    change: "+12.5%",
-    trend: "up",
-    icon: TrendingUp,
-  },
-  {
-    title: "Total Orders",
-    value: "1,284",
-    change: "+8.2%",
-    trend: "up",
-    icon: ShoppingCart,
-  },
-  {
-    title: "Total Products",
-    value: "156",
-    change: "+3",
-    trend: "up",
-    icon: Package,
-  },
-  {
-    title: "Total Customers",
-    value: "2,847",
-    change: "+18.7%",
-    trend: "up",
-    icon: Users,
-  },
-]
+interface DashboardData {
+  stats: {
+    totalRevenue: { value: number; change: number; trend: string }
+    totalOrders: { value: number; change: number; trend: string }
+    totalProducts: { value: number; change: number; trend: string }
+    totalCustomers: { value: number; change: number; trend: string }
+  }
+  recentOrders: any[]
+  topProducts: any[]
+  monthlySales: any[]
+}
 
 export default function AdminDashboard() {
+  const router = useRouter()
+  const { isAuthenticated, user, isLoading: authLoading } = useAuth()
+  const [dashboardData, setDashboardData] = useState<DashboardData | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState("")
+
+  useEffect(() => {
+    if (!authLoading && (!isAuthenticated || user?.role !== "ADMIN")) {
+      router.push("/")
+      return
+    }
+
+    if (isAuthenticated && user?.role === "ADMIN") {
+      fetchDashboardData()
+    }
+  }, [isAuthenticated, user, authLoading, router])
+
+  const fetchDashboardData = async () => {
+    try {
+      const response = await fetch("/api/admin/dashboard")
+      if (!response.ok) {
+        throw new Error("Failed to fetch dashboard data")
+      }
+      const data = await response.json()
+      setDashboardData(data)
+    } catch (err: any) {
+      console.error("Dashboard fetch error:", err)
+      setError(err.message || "Failed to load dashboard data")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  if (authLoading || isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
+          <p className="text-sm text-destructive">{error}</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!dashboardData) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-muted/50 border border-border rounded-lg p-4">
+          <p className="text-sm text-muted-foreground">No dashboard data available</p>
+        </div>
+      </div>
+    )
+  }
+
+  const stats = [
+    {
+      title: "Total Revenue",
+      value: `₹${dashboardData.stats.totalRevenue.value.toLocaleString()}`,
+      change: `${dashboardData.stats.totalRevenue.change >= 0 ? '+' : ''}${dashboardData.stats.totalRevenue.change.toFixed(1)}%`,
+      trend: dashboardData.stats.totalRevenue.trend,
+      icon: TrendingUp,
+    },
+    {
+      title: "Total Orders",
+      value: dashboardData.stats.totalOrders.value.toLocaleString(),
+      change: `${dashboardData.stats.totalOrders.change >= 0 ? '+' : ''}${dashboardData.stats.totalOrders.change.toFixed(1)}%`,
+      trend: dashboardData.stats.totalOrders.trend,
+      icon: ShoppingCart,
+    },
+    {
+      title: "Total Products",
+      value: dashboardData.stats.totalProducts.value.toLocaleString(),
+      change: `+${dashboardData.stats.totalProducts.value}`,
+      trend: dashboardData.stats.totalProducts.trend,
+      icon: Package,
+    },
+    {
+      title: "Total Customers",
+      value: dashboardData.stats.totalCustomers.value.toLocaleString(),
+      change: `${dashboardData.stats.totalCustomers.change >= 0 ? '+' : ''}${dashboardData.stats.totalCustomers.change.toFixed(1)}%`,
+      trend: dashboardData.stats.totalCustomers.trend,
+      icon: Users,
+    },
+  ]
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -75,7 +153,7 @@ export default function AdminDashboard() {
             <CardTitle>Sales Overview</CardTitle>
           </CardHeader>
           <CardContent>
-            <SalesChart />
+            <SalesChart data={dashboardData.monthlySales} />
           </CardContent>
         </Card>
 
@@ -84,7 +162,7 @@ export default function AdminDashboard() {
             <CardTitle>Top Products</CardTitle>
           </CardHeader>
           <CardContent>
-            <TopProducts />
+            <TopProducts data={dashboardData.topProducts} />
           </CardContent>
         </Card>
       </div>
@@ -95,7 +173,7 @@ export default function AdminDashboard() {
           <CardTitle>Recent Orders</CardTitle>
         </CardHeader>
         <CardContent>
-          <RecentOrders />
+          <RecentOrders data={dashboardData.recentOrders} />
         </CardContent>
       </Card>
     </div>

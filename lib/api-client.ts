@@ -219,4 +219,30 @@ export const uploadAPI = {
   },
 }
 
+// Admin Dashboard API
+export const adminDashboardAPI = {
+  getData: () => {
+    return fetchAPI<{
+      stats: any
+      recentOrders: any[]
+      topProducts: any[]
+      monthlySales: any[]
+    }>("/api/admin/dashboard")
+  },
+}
+
+// Admin Analytics API
+export const adminAnalyticsAPI = {
+  getData: () => {
+    return fetchAPI<{
+      keyMetrics: any
+      customerMetrics: any
+      salesData: any[]
+      categoryData: any[]
+      topProducts: any[]
+      recentOrders: any[]
+    }>("/api/admin/analytics")
+  },
+}
+
 export { APIError }
