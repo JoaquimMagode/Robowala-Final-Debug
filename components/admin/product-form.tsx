@@ -64,16 +64,17 @@ export function ProductForm({ productId, initialData }: ProductFormProps) {
   const handleImageUpload = async (file: File, isPrimary = false) => {
     setImageUploading(true)
     try {
-      const formData = new FormData()
-      formData.append("file", file)
+      const uploadFormData = new FormData()
+      uploadFormData.append("file", file)
 
       const response = await fetch("/api/admin/upload", {
         method: "POST",
-        body: formData,
+        body: uploadFormData,
       })
 
       if (!response.ok) {
-        throw new Error("Upload failed")
+        const errorData = await response.json()
+        throw new Error(errorData.message || "Upload failed")
       }
 
       const { url } = await response.json()
@@ -85,8 +86,9 @@ export function ProductForm({ productId, initialData }: ProductFormProps) {
       }
 
       toast.success("Image uploaded successfully")
-    } catch (error) {
-      toast.error("Failed to upload image")
+    } catch (error: any) {
+      console.error("Image upload error:", error)
+      toast.error(error.message || "Failed to upload image")
     } finally {
       setImageUploading(false)
     }
@@ -119,6 +121,11 @@ export function ProductForm({ productId, initialData }: ProductFormProps) {
     setIsLoading(true)
 
     try {
+      // Validate required fields
+      if (!formData.name || !formData.price || !formData.originalPrice || !formData.category || !formData.description || !formData.image) {
+        throw new Error("Please fill in all required fields")
+      }
+
       const url = productId ? `/api/admin/products/${productId}` : "/api/admin/products"
       const method = productId ? "PUT" : "POST"
 

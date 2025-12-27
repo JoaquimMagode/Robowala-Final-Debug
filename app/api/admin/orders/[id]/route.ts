@@ -53,9 +53,19 @@ export async function PUT(
     }
 
     // Update order status
+    const updateData: any = { status }
+    
+    // If cancelling order, also update payment status if it was pending
+    if (status === "CANCELLED") {
+      const currentOrder = await prisma.order.findUnique({ where: { id } })
+      if (currentOrder?.paymentStatus === "PENDING") {
+        updateData.paymentStatus = "FAILED"
+      }
+    }
+
     const order = await prisma.order.update({
       where: { id },
-      data: { status },
+      data: updateData,
       include: {
         user: {
           select: {

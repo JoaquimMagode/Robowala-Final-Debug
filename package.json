@@ -9,7 +9,8 @@
     "start": "next start",
     "postinstall": "prisma generate",
     "db:seed": "prisma db seed",
-    "migrate": "ts-node migrate.ts"
+    "migrate": "ts-node migrate.ts",
+    "migrate:payment": "ts-node migrate-payment-fields.ts"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

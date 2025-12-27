@@ -89,6 +89,8 @@ model Order {
   discount        Float
   total           Float
   status          String      @default("PENDING") // PENDING, PROCESSING, SHIPPED, DELIVERED, CANCELLED
+  paymentMethod   String      @default("COD") // COD, CARD, UPI, NETBANKING
+  paymentStatus   String      @default("PENDING") // PENDING, PAID, FAILED
   shippingAddress String // JSON string
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
