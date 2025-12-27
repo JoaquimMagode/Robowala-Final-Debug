@@ -16,8 +16,8 @@ interface Order {
   id: string
   orderNumber: string
   status: string
-  paymentMethod: string
-  paymentStatus: string
+  paymentMethod?: string
+  paymentStatus?: string
   total: number
   createdAt: string
   user: {
@@ -187,16 +187,16 @@ export default function OrdersPage() {
                       <td className="py-4 pr-4">
                         <div className="flex flex-col gap-1">
                           <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20 w-fit">
-                            {order.paymentMethod}
+                            {order.paymentMethod || "COD"}
                           </Badge>
                           <Badge 
                             variant="outline" 
-                            className={order.paymentStatus === "PAID" 
+                            className={(order.paymentStatus || "PENDING") === "PAID" 
                               ? "bg-green-500/10 text-green-600 border-green-500/20 w-fit" 
                               : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20 w-fit"
                             }
                           >
-                            {order.paymentStatus}
+                            {order.paymentStatus || "PENDING"}
                           </Badge>
                         </div>
                       </td>
