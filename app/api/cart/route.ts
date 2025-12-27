@@ -8,9 +8,20 @@ const prisma = new PrismaClient()
 
 export async function GET(request: NextRequest) {
   try {
-    // Require authentication
+    // Check authentication but don't require it
     const { error } = await requireAuth()
-    if (error) return error
+    if (error) {
+      // Return empty cart for unauthenticated users
+      return NextResponse.json(
+        {
+          items: [],
+          subtotal: 0,
+          discount: 0,
+          total: 0,
+        },
+        { status: 200 }
+      )
+    }
 
     const userId = await getUserId()
 

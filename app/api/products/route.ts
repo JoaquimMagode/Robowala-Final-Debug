@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
     // Parse specifications and images
     const productsWithParsedData = products.map((product) => ({
       ...product,
-      specifications: JSON.parse(product.specifications),
+      specifications: product.specifications ? JSON.parse(product.specifications) : {},
       images: product.images ? JSON.parse(product.images) : [],
     }))
 
