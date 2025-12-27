@@ -66,11 +66,13 @@ export async function GET(request: NextRequest) {
     const ordersWithParsedData = orders.map((order) => ({
       ...order,
       shippingAddress: JSON.parse(order.shippingAddress),
+      paymentMethod: order.paymentMethod || "COD",
+      paymentStatus: order.paymentStatus || "PENDING",
       items: order.items.map((item) => ({
         ...item,
         product: {
           ...item.product,
-          specifications: JSON.parse(item.product.specifications),
+          specifications: item.product.specifications ? JSON.parse(item.product.specifications) : {},
         },
       })),
     }))

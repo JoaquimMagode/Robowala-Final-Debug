@@ -169,7 +169,7 @@ export async function GET(request: NextRequest) {
 
     const productsWithParsedData = products.map((product) => ({
       ...product,
-      specifications: JSON.parse(product.specifications),
+      specifications: product.specifications ? JSON.parse(product.specifications) : {},
       images: product.images ? JSON.parse(product.images) : [],
     }))
 

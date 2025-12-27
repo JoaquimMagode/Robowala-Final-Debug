@@ -31,7 +31,7 @@ export async function GET(
 
     const productWithParsedData = {
       ...product,
-      specifications: JSON.parse(product.specifications),
+      specifications: product.specifications ? JSON.parse(product.specifications) : {},
       images: product.images ? JSON.parse(product.images) : [],
     }
 

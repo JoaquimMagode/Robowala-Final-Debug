@@ -82,15 +82,17 @@ export async function PUT(
       },
     })
 
-    // Parse shipping address and product specifications
+    // Parse specifications and product specifications
     const orderWithParsedData = {
       ...order,
       shippingAddress: JSON.parse(order.shippingAddress),
+      paymentMethod: order.paymentMethod || "COD",
+      paymentStatus: order.paymentStatus || "PENDING",
       items: order.items.map((item) => ({
         ...item,
         product: {
           ...item.product,
-          specifications: JSON.parse(item.product.specifications),
+          specifications: item.product.specifications ? JSON.parse(item.product.specifications) : {},
         },
       })),
     }
