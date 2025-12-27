@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///D:/Projects%20Dev/robowala%20final/app/careers/page.tsx"],"sourcesContent":["export default function CareersPage() {\r\n    return (\r\n        <div className=\"min-h-[60vh] flex flex-col items-center justify-center p-4 text-center\">\r\n            <h1 className=\"text-3xl font-bold mb-4\">Careers at ROBOWALA</h1>\r\n            <p className=\"text-muted-foreground max-w-md\">\r\n                We are always looking for talented individuals to join our team.\r\n                Currently, there are no open positions. Please check back later!\r\n            </p>\r\n        </div>\r\n    )\r\n}\r\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACpB,qBACI,8OAAC;QAAI,WAAU;;0BACX,8OAAC;gBAAG,WAAU;0BAA0B;;;;;;0BACxC,8OAAC;gBAAE,WAAU;0BAAiC;;;;;;;;;;;;AAM1D"}}]
-}
