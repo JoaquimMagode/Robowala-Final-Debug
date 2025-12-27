@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
-import { prisma } from "@/lib/db"
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
 
 export async function GET(request: NextRequest) {
   try {
@@ -49,11 +51,11 @@ export async function GET(request: NextRequest) {
       },
     })
 
-    // Parse specifications and fix image paths
-    const productsWithParsedSpecs = products.map((product) => ({
+    // Parse specifications and images
+    const productsWithParsedData = products.map((product) => ({
       ...product,
-      image: product.image?.startsWith('/') ? product.image : `/products/${product.image}`,
       specifications: JSON.parse(product.specifications),
+      images: product.images ? JSON.parse(product.images) : [],
     }))
 
     // Calculate pagination metadata
@@ -62,7 +64,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(
       {
-        products: productsWithParsedSpecs,
+        products: productsWithParsedData,
         pagination: {
           page,
           limit,
@@ -82,6 +84,8 @@ export async function GET(request: NextRequest) {
       },
       { status: 500 }
     )
+  } finally {
+    await prisma.$disconnect()
   }
 }
 
