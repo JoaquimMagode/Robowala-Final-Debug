@@ -155,7 +155,7 @@ export const cartAPI = {
 
 // Orders API
 export const ordersAPI = {
-  create: (data: { shippingAddress: any; paymentMethod?: string }) => {
+  create: (data: { shippingAddress: any }) => {
     return fetchAPI<{ order: any }>("/api/orders", {
       method: "POST",
       body: JSON.stringify(data),

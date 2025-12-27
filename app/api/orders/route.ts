@@ -35,7 +35,6 @@ export async function POST(request: NextRequest) {
         pincode: z.string().min(1, "PIN code is required"),
         phone: z.string().min(1, "Phone is required"),
       }),
-      paymentMethod: z.enum(["COD", "CARD", "UPI", "NETBANKING"]).optional(),
     })
 
     const validationResult = createOrderSchema.safeParse(body)
@@ -51,7 +50,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { shippingAddress, paymentMethod = "COD" } = validationResult.data
+    const { shippingAddress } = validationResult.data
 
     // Get user's cart items
     const cartItems = await prisma.cartItem.findMany({
@@ -113,8 +112,6 @@ export async function POST(request: NextRequest) {
           total,
           status: "PENDING",
           shippingAddress: JSON.stringify(shippingAddress),
-          ...(paymentMethod && { paymentMethod }),
-          ...(paymentMethod && { paymentStatus: paymentMethod === "COD" ? "PENDING" : "PAID" }),
         },
       })
 
