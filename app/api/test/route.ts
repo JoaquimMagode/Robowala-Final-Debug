@@ -1,31 +1,22 @@
-import { NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import { NextRequest, NextResponse } from "next/server"
+import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
 export async function GET() {
   try {
-    const productCount = await prisma.product.count()
-    const userCount = await prisma.user.count()
+    const count = await prisma.product.count()
+    const products = await prisma.product.findMany({ take: 3 })
     
     return NextResponse.json({
-      status: 'ok',
-      database: 'connected',
-      products: productCount,
-      users: userCount,
-      env: {
-        hasDbUrl: !!process.env.DATABASE_URL,
-        dbUrlPrefix: process.env.DATABASE_URL?.substring(0, 20)
-      }
+      success: true,
+      productCount: count,
+      sampleProducts: products.map(p => ({ id: p.id, name: p.name, price: p.price }))
     })
   } catch (error) {
     return NextResponse.json({
-      status: 'error',
-      message: error instanceof Error ? error.message : 'Unknown error',
-      env: {
-        hasDbUrl: !!process.env.DATABASE_URL,
-        dbUrlPrefix: process.env.DATABASE_URL?.substring(0, 20)
-      }
+      success: false,
+      error: error instanceof Error ? error.message : "Unknown error"
     }, { status: 500 })
   } finally {
     await prisma.$disconnect()

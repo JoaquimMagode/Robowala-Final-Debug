@@ -6,81 +6,36 @@ const prisma = new PrismaClient()
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    
-    // Get query parameters
-    const category = searchParams.get("category")
-    const search = searchParams.get("search")
-    const page = parseInt(searchParams.get("page") || "1")
     const limit = parseInt(searchParams.get("limit") || "12")
     
-    // Validate pagination parameters
-    if (page < 1 || limit < 1 || limit > 100) {
-      return NextResponse.json(
-        {
-          error: "ValidationError",
-          message: "Invalid pagination parameters",
-        },
-        { status: 400 }
-      )
-    }
-
-    // Build where clause for filtering
-    const where: any = {}
-    
-    if (category) {
-      where.categorySlug = category
-    }
-    
-    if (search) {
-      where.OR = [
-        { name: { contains: search } },
-        { description: { contains: search } },
-      ]
-    }
-
-    // Get total count for pagination
-    const total = await prisma.product.count({ where })
-
-    // Get products with pagination
     const products = await prisma.product.findMany({
-      where,
-      skip: (page - 1) * limit,
       take: limit,
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: { createdAt: "desc" }
     })
 
-    // Parse specifications and images
     const productsWithParsedData = products.map((product) => ({
       ...product,
       specifications: product.specifications ? JSON.parse(product.specifications) : {},
-      images: product.images ? JSON.parse(product.images) : [],
+      images: product.images ? JSON.parse(product.images) : []
     }))
 
-    // Calculate pagination metadata
-    const totalPages = Math.ceil(total / limit)
-    const hasMore = page < totalPages
-
-    return NextResponse.json(
-      {
-        products: productsWithParsedData,
-        pagination: {
-          page,
-          limit,
-          total,
-          totalPages,
-          hasMore,
-        },
-      },
-      { status: 200 }
-    )
+    return NextResponse.json({
+      products: productsWithParsedData,
+      pagination: {
+        page: 1,
+        limit,
+        total: products.length,
+        totalPages: 1,
+        hasMore: false
+      }
+    })
   } catch (error) {
     console.error("Products fetch error:", error)
     return NextResponse.json(
       {
         error: "ServerError",
-        message: "An unexpected error occurred while fetching products",
+        message: "Failed to fetch products",
+        details: error instanceof Error ? error.message : "Unknown error"
       },
       { status: 500 }
     )
