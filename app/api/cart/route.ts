@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
-import { prisma } from "@/lib/db"
+import { PrismaClient } from "@prisma/client"
 import { requireAuth, getUserId } from "@/lib/auth-helpers"
 import { auth } from "@/lib/auth"
 import { z } from "zod"
+
+const prisma = new PrismaClient()
 
 export async function GET(request: NextRequest) {
   try {
@@ -255,5 +257,7 @@ export async function DELETE(request: NextRequest) {
       },
       { status: 500 }
     )
+  } finally {
+    await prisma.$disconnect()
   }
 }
