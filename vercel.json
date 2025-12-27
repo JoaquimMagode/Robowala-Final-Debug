@@ -4,5 +4,8 @@
       "maxDuration": 30
     }
   },
-  "buildCommand": "cp prisma/schema.production.prisma prisma/schema.prisma && prisma generate && next build"
+  "buildCommand": "cp prisma/schema.production.prisma prisma/schema.prisma && prisma generate && next build",
+  "env": {
+    "NEXTAUTH_URL": "https://robowala-final-debug.vercel.app"
+  }
 }
