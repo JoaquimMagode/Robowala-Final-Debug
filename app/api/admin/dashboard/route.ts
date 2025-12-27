@@ -92,17 +92,18 @@ export async function GET(request: NextRequest) {
       }),
 
       // Monthly sales for the last 12 months
-      prisma.$queryRaw`
-        SELECT 
-          strftime('%Y-%m', createdAt) as month,
-          SUM(total) as sales,
-          COUNT(*) as orders
-        FROM Order 
-        WHERE status != 'CANCELLED' 
-          AND createdAt >= date('now', '-12 months')
-        GROUP BY strftime('%Y-%m', createdAt)
-        ORDER BY month ASC
-      `
+      prisma.order.groupBy({
+        by: ['createdAt'],
+        _sum: { total: true },
+        _count: { id: true },
+        where: {
+          status: { not: "CANCELLED" },
+          createdAt: {
+            gte: new Date(new Date().setMonth(new Date().getMonth() - 12))
+          }
+        },
+        orderBy: { createdAt: 'asc' }
+      })
     ])
 
     // Get product details for top products
@@ -150,11 +151,14 @@ export async function GET(request: NextRequest) {
     }))
 
     // Format monthly sales data
-    const formattedMonthlySales = (monthlySales as any[]).map(item => ({
-      month: new Date(item.month + "-01").toLocaleDateString("en-US", { month: "short" }),
-      sales: Number(item.sales) || 0,
-      orders: Number(item.orders) || 0
-    }))
+    const formattedMonthlySales = monthlySales.map((item: any) => {
+      const date = new Date(item.createdAt)
+      return {
+        month: date.toLocaleDateString("en-US", { month: "short" }),
+        sales: Number(item._sum.total) || 0,
+        orders: Number(item._count.id) || 0
+      }
+    })
 
     return NextResponse.json({
       stats: {
