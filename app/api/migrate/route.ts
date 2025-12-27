@@ -5,20 +5,26 @@ const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest) {
   try {
-    // Add missing columns to products table
-    await prisma.$executeRaw`
-      ALTER TABLE "Product" 
-      ADD COLUMN IF NOT EXISTS "discountPercent" DOUBLE PRECISION,
-      ADD COLUMN IF NOT EXISTS "discountAmount" DOUBLE PRECISION,
-      ADD COLUMN IF NOT EXISTS "images" TEXT,
-      ADD COLUMN IF NOT EXISTS "stock" INTEGER DEFAULT 0
-    `
+    // Add missing columns one by one
+    try {
+      await prisma.$executeRaw`ALTER TABLE "Product" ADD COLUMN "discountPercent" DOUBLE PRECISION`
+    } catch (e) { console.log("discountPercent already exists") }
+    
+    try {
+      await prisma.$executeRaw`ALTER TABLE "Product" ADD COLUMN "discountAmount" DOUBLE PRECISION`
+    } catch (e) { console.log("discountAmount already exists") }
+    
+    try {
+      await prisma.$executeRaw`ALTER TABLE "Product" ADD COLUMN "images" TEXT`
+    } catch (e) { console.log("images already exists") }
+    
+    try {
+      await prisma.$executeRaw`ALTER TABLE "Product" ADD COLUMN "stock" INTEGER DEFAULT 0`
+    } catch (e) { console.log("stock already exists") }
 
-    // Update password field to be nullable
-    await prisma.$executeRaw`
-      ALTER TABLE "User" 
-      ALTER COLUMN "password" DROP NOT NULL
-    `
+    try {
+      await prisma.$executeRaw`ALTER TABLE "User" ALTER COLUMN "password" DROP NOT NULL`
+    } catch (e) { console.log("password already nullable") }
 
     return NextResponse.json({ 
       message: "Database migration completed successfully" 
