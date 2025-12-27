@@ -167,12 +167,12 @@ export async function PUT(
     }
 
     // Convert specifications to JSON string if provided
-    if (data.specifications) {
+    if (data.specifications !== undefined) {
       updateData.specifications = JSON.stringify(data.specifications)
     }
 
     // Convert images array to JSON string if provided
-    if (data.images) {
+    if (data.images !== undefined) {
       updateData.images = JSON.stringify(data.images)
     }
 
