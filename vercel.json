@@ -6,6 +6,6 @@
   },
   "buildCommand": "cp prisma/schema.production.prisma prisma/schema.prisma && prisma generate && next build",
   "env": {
-    "NEXTAUTH_URL": "https://robowala-final-debug.vercel.app"
+    "NEXTAUTH_URL": "https://robowala-final.vercel.app"
   }
 }
