@@ -57,7 +57,7 @@ export async function GET(
         ...item,
         product: {
           ...item.product,
-          specifications: JSON.parse(item.product.specifications),
+          specifications: item.product.specifications ? JSON.parse(item.product.specifications) : {},
         },
       })),
     }
